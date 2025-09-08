@@ -6,13 +6,27 @@
   <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
   <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --section-bg: #fff;
+      --text-color: #2c3e50;
+      --link-hover: #0073e6;
+    }
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --section-bg: #2c2c2c;
+      --text-color: #e0e0e0;
+      --link-hover: #4da8ff;
+    }
     body { 
       font-family: "Times New Roman", Times, serif; 
       margin: 0; 
       padding: 0; 
       line-height: 1.6; 
-      background: #f0f2f5;
+      background: var(--bg-color);
+      color: var(--text-color);
     }
     header {
       background: linear-gradient(135deg, #0073e6, #005bb5);
@@ -58,13 +72,92 @@
     header img.profile:hover {
       transform: scale(1.1);
     }
-    nav { text-align: center; padding: 10px; background: #f4f4f4; }
-    nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
-    nav a:hover { color: #0073e6; }
+    .settings-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .settings-icon:hover {
+      transform: rotate(90deg);
+    }
+    .settings-menu {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 200px;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.9rem;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+    }
+    .settings-menu.active {
+      max-height: 300px;
+    }
+    .settings-menu h3 {
+      background: linear-gradient(135deg, #1a242f, #16202a);
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .settings-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .settings-menu ul li {
+      border-bottom: 1px solid #444;
+      padding: 10px;
+    }
+    .settings-menu ul li label {
+      display: block;
+      color: #fff;
+      cursor: pointer;
+    }
+    .settings-menu ul li input[type="file"] {
+      display: block;
+      margin-top: 5px;
+      color: #fff;
+    }
+    .settings-menu ul li a, .settings-menu ul li button {
+      display: block;
+      padding: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.85rem;
+      transition: background 0.3s;
+    }
+    .settings-menu ul li a:hover, .settings-menu ul li button:hover {
+      background: linear-gradient(135deg, #0073e6, #005bb5);
+    }
+    nav { 
+      text-align: center; 
+      padding: 10px; 
+      background: var(--section-bg); 
+    }
+    nav a { 
+      margin: 0 15px; 
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-weight: bold; 
+      transition: color 0.3s; 
+    }
+    nav a:hover { 
+      color: var(--link-hover); 
+    }
     .dropdown {
       position: fixed;
       top: 20px;
-      right: 20px;
+      right: 60px;
       width: 160px;
       background: #2c3e50;
       color: #fff;
@@ -128,7 +221,7 @@
       width: 80%;
       max-width: 600px;
       max-height: 80vh;
-      background: #fff;
+      background: var(--section-bg);
       padding: 15px;
       border-radius: 8px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -136,6 +229,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      color: var(--text-color);
     }
     .modal-image {
       width: 100%;
@@ -162,28 +257,45 @@
       transition: background 0.3s;
     }
     .close-button:hover {
-      background: #0073e6;
+      background: var(--link-hover);
     }
     #documentIframe {
       width: 100%;
       height: 60vh;
       border: none;
     }
+    #emailForm, #codeForm {
+      text-align: center;
+      width: 100%;
+    }
+    #emailForm input, #codeForm input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: var(--section-bg);
+      color: var(--text-color);
+    }
     section { 
       padding: 40px 20px; 
       max-width: 900px; 
       margin: auto; 
-      background: #fff;
+      background: var(--section-bg);
       margin-bottom: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    h2 { color: #2c3e50; margin-bottom: 20px; }
+    h2 { 
+      color: var(--text-color); 
+      margin-bottom: 20px; 
+    }
     #contact {
       padding: 40px 20px;
       max-width: 900px;
       margin: auto;
-      background: linear-gradient(135deg, #ffffff, #f0f4f8);
+      background: linear-gradient(135deg, var(--section-bg), #f0f4f8);
       border-radius: 12px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -193,7 +305,7 @@
       padding: 20px;
       border: 4px solid transparent;
       border-radius: 12px;
-      background: linear-gradient(135deg, #f0f4f8, #ffffff) padding-box,
+      background: linear-gradient(135deg, var(--section-bg), #ffffff) padding-box,
                   linear-gradient(45deg, #2ecc71, #3498db) border-box;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -205,11 +317,11 @@
       transform: translateX(-50%);
       font-size: 2rem;
       color: #2ecc71;
-      background: #ffffff;
+      background: var(--section-bg);
       padding: 0 10px;
     }
     #contact h2 {
-      color: #2c3e50;
+      color: var(--text-color);
       font-family: 'Gabriola', 'Georgia', serif;
       font-size: 2rem;
       margin-bottom: 30px;
@@ -224,35 +336,35 @@
     }
     .socials a {
       font-size: 2rem;
-      color: #2c3e50;
+      color: var(--text-color);
       transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
       padding: 10px;
       border-radius: 50%;
     }
     .socials a:hover {
       color: #fff;
-      background: #0073e6;
+      background: var(--link-hover);
       transform: scale(1.2) rotate(5deg);
     }
     .x-icon {
       font-family: 'Roboto', 'Times New Roman', Times, serif;
       font-weight: bold;
       font-size: 1.8rem;
-      color: #2c3e50;
+      color: var(--text-color);
       transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
       padding: 10px;
       border-radius: 50%;
     }
     .x-icon:hover {
       color: #fff;
-      background: #0073e6;
+      background: var(--link-hover);
       transform: rotate(15deg) scale(1.2);
     }
     .projects .card {
       margin-bottom: 20px;
       padding: 15px;
       border-radius: 6px;
-      background: #f9f9f9;
+      background: var(--section-bg);
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
     }
@@ -262,13 +374,13 @@
     }
     .projects .card h3 {
       margin: 0;
-      color: #2c3e50;
+      color: var(--text-color);
       font-family: 'Roboto', 'Times New Roman', Times, serif;
       font-size: 1.5rem;
       transition: color 0.3s;
     }
     .projects .card h3:hover {
-      color: #0073e6;
+      color: var(--link-hover);
     }
     .project-description {
       max-height: 0;
@@ -283,12 +395,12 @@
     }
     .project-description h4 {
       margin: 0 0 10px;
-      color: #2c3e50;
+      color: var(--text-color);
       font-size: 1.2rem;
     }
     .project-description p {
       margin: 0 0 10px;
-      color: #444;
+      color: var(--text-color);
     }
     .project-image {
       width: 100%;
@@ -298,12 +410,12 @@
       margin: 10px 0;
       display: block;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      cursor: pointer; /* Indicate clickability */
+      cursor: pointer;
     }
     .project-divider {
       border: 0;
       height: 4px;
-      background: #2c3e50;
+      background: var(--text-color);
       margin: 20px 0;
       border-radius: 2px;
     }
@@ -318,17 +430,23 @@
       transition: background 0.3s, transform 0.3s;
     }
     a.button:hover { 
-      background: #0073e6; 
+      background: var(--link-hover); 
       transform: scale(1.05);
     }
-    footer { text-align: center; background: #2c3e50; color: #fff; padding: 20px; margin-top: 40px; }
+    footer { 
+      text-align: center; 
+      background: #2c3e50; 
+      color: #fff; 
+      padding: 20px; 
+      margin-top: 40px; 
+    }
     .quote {
       text-align: center;
       margin: 20px 0;
       font-style: italic;
       font-size: 1.2rem;
       font-family: "Georgia", serif;
-      color: #444;
+      color: var(--text-color);
     }
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
@@ -336,12 +454,17 @@
       header p { font-size: 1rem; }
       header .tagline { font-size: 1.1rem; }
       nav a { display: block; margin: 5px 0; }
-      .dropdown {
+      .dropdown, .settings-menu {
         width: 140px;
         top: 15px;
         right: 15px;
       }
-      .dropdown ul li a { text-align: center; padding: 10px; }
+      .dropdown { right: 55px; }
+      .settings-icon { right: 15px; }
+      .dropdown ul li a, .settings-menu ul li a, .settings-menu ul li button { 
+        text-align: center; 
+        padding: 10px; 
+      }
       .modal-content {
         width: 90%;
         max-width: 95%;
@@ -365,6 +488,30 @@
   </style>
 </head>
 <body>
+  <header>
+    <img src="images/profile.png" alt="COLLINS MUTHURI" class="profile" id="profileImage" onclick="showModal()">
+    <h1>COLLINS MUTHURI</h1>
+    <span class="tagline">SMALL MAN WITH BIG GOD</span>
+    <p>A Civil Engineer and Trainer</p>
+    <i class="fas fa-bars settings-icon" onclick="toggleSettings()"></i>
+  </header>
+
+  <div class="settings-menu" id="settingsMenu">
+    <h3>Settings</h3>
+    <ul>
+      <li>
+        <label for="profilePhotoInput">Change Profile Photo</label>
+        <input type="file" id="profilePhotoInput" accept="image/png,image/jpeg" onchange="uploadProfilePhoto()">
+      </li>
+      <li>
+        <button onclick="toggleTheme()">Toggle Theme</button>
+      </li>
+      <li>
+        <a href="#privacy">Privacy Settings</a>
+      </li>
+    </ul>
+  </div>
+
   <div class="dropdown">
     <h3>📂 My Docs</h3>
     <ul>
@@ -376,17 +523,10 @@
     </ul>
   </div>
 
-  <header>
-    <img src="passport.png" alt="COLLINS MUTHURI" class="profile" onclick="showModal()">
-    <h1>COLLINS MUTHURI</h1>
-    <span class="tagline">SMALL MAN WITH BIG GOD</span>
-    <p>A Civil Engineer and Trainer</p>
-  </header>
-
   <div id="profileModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="hideModal()">&times;</span>
-      <img src="passport.png" alt="COLLINS MUTHURI" class="modal-image">
+      <img src="images/profile.png" alt="COLLINS MUTHURI" class="modal-image" id="profileModalImage">
     </div>
   </div>
 
@@ -400,8 +540,18 @@
   <div id="documentModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="hideDocumentModal()">&times;</span>
-      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none;"></iframe>
-      <a id="downloadButton" href="#" class="button" style="display: block; text-align: center; margin: 10px auto;">Download Document</a>
+      <div id="emailForm">
+        <h3>Request Access Code</h3>
+        <input type="email" id="emailInput" placeholder="Enter your email" required>
+        <button onclick="requestCode()" class="button">Request Code</button>
+      </div>
+      <div id="codeForm" style="display: none;">
+        <h3>Enter Access Code</h3>
+        <input type="text" id="codeInput" placeholder="Enter the code sent to your email" required>
+        <button onclick="verifyCode()" class="button">Submit Code</button>
+      </div>
+      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none; display: none;"></iframe>
+      <a id="downloadButton" href="#" class="button" style="display: none; text-align: center; margin: 10px auto;">Download Document</a>
     </div>
   </div>
 
@@ -462,6 +612,11 @@
     </div>
   </section>
 
+  <section id="privacy" style="display: none;">
+    <h2>Privacy Settings</h2>
+    <p>Manage your privacy preferences here. (Placeholder for future implementation)</p>
+  </section>
+
   <div class="quote">
     “Hard work is the only way” – <b>Colloh</b>
   </div>
@@ -471,109 +626,49 @@
   </footer>
 
   <script>
-    // Dropdown toggle
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownContent = document.querySelector('.dropdown ul');
-    const dropdownHeader = document.querySelector('.dropdown h3');
+    // Initialize EmailJS (replace with your EmailJS user ID)
+    (function(){
+      emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS user ID
+    })();
 
-    dropdownHeader.addEventListener('click', () => {
-      dropdown.classList.toggle('active');
-    });
+    // Global variable to store the requested document URL
+    let currentDocumentUrl = '';
+
+    // Settings menu toggle
+    function toggleSettings() {
+      const settingsMenu = document.getElementById('settingsMenu');
+      settingsMenu.classList.toggle('active');
+    }
 
     document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('active');
+      const settingsMenu = document.getElementById('settingsMenu');
+      const settingsIcon = document.querySelector('.settings-icon');
+      if (!settingsMenu.contains(e.target) && !settingsIcon.contains(e.target)) {
+        settingsMenu.classList.remove('active');
       }
     });
 
-    // Profile modal
-    function showModal() {
-      document.getElementById('profileModal').style.display = 'flex';
+    // Theme toggle
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
     }
-    function hideModal() {
-      document.getElementById('profileModal').style.display = 'none';
-    }
-    document.getElementById('profileModal').addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal')) {
-        hideModal();
-      }
+
+    // Load saved theme
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
     });
 
-    // Telegram modal
-    function showTelegramModal() {
-      document.getElementById('telegramModal').style.display = 'flex';
-    }
-    function hideTelegramModal() {
-      document.getElementById('telegramModal').style.display = 'none';
-    }
-    document.getElementById('telegramModal').addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal')) {
-        hideTelegramModal();
-      }
-    });
-
-    // Document viewer with password protection
-    function viewDocument(url) {
-      const password = prompt('Please enter the password to view the document:');
-      if (password === '39899082') {
-        const iframe = document.getElementById('documentIframe');
-        const downloadButton = document.getElementById('downloadButton');
-        iframe.src = url;
-        downloadButton.href = url;
-        downloadButton.setAttribute('download', '');
-        document.getElementById('documentModal').style.display = 'flex';
-      } else {
-        alert('Incorrect password. Please try again or contact the site administrator.');
-      }
-    }
-    function hideDocumentModal() {
-      document.getElementById('documentModal').style.display = 'none';
-      document.getElementById('documentIframe').src = '';
-    }
-    document.getElementById('documentModal').addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal')) {
-        hideDocumentModal();
-      }
-    });
-
-    // File existence check
-    document.querySelectorAll('.dropdown ul li a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const url = link.getAttribute('onclick').match(/'([^']+)'/)[1];
-        fetch(url, { method: 'HEAD' })
-          .then(response => {
-            if (!response.ok) {
-              e.preventDefault();
-              alert('Error: File not found or inaccessible. Please contact the site administrator.');
-            }
-          })
-          .catch(() => {
-            e.preventDefault();
-            alert('Error: Could not access the file. Please check your connection or contact the site administrator.');
-          });
-      });
-    });
-
-    // Project description toggle
-    function toggleDescription(id) {
-      const description = document.getElementById(id);
-      if (!description) {
-        console.error(`No element found with id: ${id}`);
+    // Profile photo upload
+    function uploadProfilePhoto() {
+      const fileInput = document.getElementById('profilePhotoInput');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select an image file.');
         return;
       }
-      const isActive = description.classList.contains('active');
-      document.querySelectorAll('.project-description').forEach(desc => {
-        desc.classList.remove('active');
-        desc.style.maxHeight = '0';
-        desc.style.opacity = '0';
-      });
-      if (!isActive) {
-        description.classList.add('active');
-        description.style.maxHeight = description.scrollHeight + 'px';
-        description.style.opacity = '1';
-        console.log(`Toggled description for id: ${id}`);
-      }
-    }
-  </script>
-</body>
-</html>
+      if (!file.type.match('image/(png|jpeg)')) {
+        alert('Please select a PNG
