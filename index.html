@@ -676,3 +676,37 @@
     }
 
     document.addEventListener
+        // Project description toggle
+    function toggleDescription(id) {
+      const description = document.getElementById(id);
+      if (!description) {
+        console.error(`No element found with id: ${id}`);
+        return;
+      }
+      const isActive = description.classList.contains('active');
+      document.querySelectorAll('.project-description').forEach(desc => {
+        desc.classList.remove('active');
+        desc.style.maxHeight = '0';
+        desc.style.opacity = '0';
+      });
+      if (!isActive) {
+        description.classList.add('active');
+        description.style.maxHeight = description.scrollHeight + 'px';
+        description.style.opacity = '1';
+        console.log(`Toggled description for id: ${id}`);
+      }
+    }
+
+    // Ensure links work
+    document.querySelectorAll('a.button').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        console.log(`Navigating to ${href}`);
+      });
+    });
+
+    // Attach dropdown toggle to h3
+    document.querySelector('.dropdown h3').addEventListener('click', toggleDropdown);
+  </script>
+</body>
+</html>
