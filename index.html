@@ -43,7 +43,7 @@
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: var(--white);
-      padding: 120px 20px 60px 20px;
+      padding: 120px 20px 60px 100px;
       text-align: center;
       position: relative;
       box-shadow: var(--shadow);
@@ -71,8 +71,10 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     .profile-container {
-      position: relative;
-      display: inline-block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
     }
     header img.profile {
       width: 70px;
@@ -81,9 +83,7 @@
       box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
       transition: var(--transition);
       cursor: pointer;
-      position: absolute;
-      top: 10px;
-      left: 10px;
+      display: block;
     }
     header img.profile:hover {
       transform: scale(1.1);
@@ -105,7 +105,7 @@
       justify-content: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       transition: var(--transition);
-      z-index: 10;
+      z-index: 11;
     }
     .edit-profile:hover {
       background: var(--primary-color);
@@ -206,16 +206,22 @@
     }
     .dropdown {
       position: fixed;
-      top: 70px;
-      right: 20px;
+      top: 20px;
+      right: 220px;
       width: 160px;
       background: var(--text-color);
       color: var(--white);
       border-radius: 8px;
       overflow: hidden;
       font-size: 0.9rem;
-      z-index: 1000;
+      z-index: 999;
       box-shadow: var(--shadow);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .dropdown.hidden {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
     }
     .dropdown h3 {
       background: linear-gradient(135deg, #1a242f, #16202a);
@@ -563,12 +569,14 @@
     }
     @media (max-width: 768px) {
       header {
-        padding: 100px 20px 60px 20px;
+        padding: 100px 20px 60px 80px;
+      }
+      .profile-container {
+        top: 10px;
+        left: 10px;
       }
       header img.profile { 
         width: 50px; 
-        top: 10px; 
-        left: 10px; 
       }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
@@ -586,8 +594,8 @@
         width: 180px;
       }
       .dropdown {
-        top: 60px;
-        right: 15px;
+        top: 15px;
+        right: 200px;
         width: 140px;
       }
       .dropdown ul li a { text-align: center; padding: 10px; }
@@ -806,7 +814,19 @@
     // Hamburger menu toggle
     function toggleHamburger() {
       const menu = document.getElementById('hamburgerMenu');
+      const dropdown = document.querySelector('.dropdown');
+      const isActive = menu.classList.contains('active');
       menu.classList.toggle('active');
+      if (!isActive) {
+        // Hide and animate dropdown when opening hamburger
+        dropdown.classList.add('hidden');
+        dropdown.classList.remove('active'); // Close if open
+      } else {
+        // Show dropdown after closing hamburger (with delay for animation)
+        setTimeout(() => {
+          dropdown.classList.remove('hidden');
+        }, 300);
+      }
     }
     document.querySelector('.hamburger').addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -819,6 +839,7 @@
       const menu = document.getElementById('hamburgerMenu');
       if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
         menu.classList.remove('active');
+        document.querySelector('.dropdown').classList.remove('hidden'); // Return dropdown
       }
     });
 
@@ -831,6 +852,10 @@
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
+      // Automatically return dropdown after selection
+      setTimeout(() => {
+        document.querySelector('.dropdown').classList.remove('hidden');
+      }, 300);
     }
 
     // Theme toggle
