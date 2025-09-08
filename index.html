@@ -3,61 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
+  <title>My Portfolio</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    body { 
-      font-family: "Times New Roman", Times, serif; 
-      margin: 0; 
-      padding: 0; 
-      line-height: 1.6; 
-      background: #f0f2f5;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+      text-align: center;
     }
-    
-    /* HEADER STYLING */
+
     header {
       background: linear-gradient(135deg, #0073e6, #005bb5);
       color: #fff;
-      padding: 80px 20px 60px 20px;
-      text-align: center;
+      padding: 30px 20px;
       position: relative;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    header h1 { 
-      margin: 0; 
-      font-size: 2.5rem; 
-      text-transform: uppercase; 
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
-    header p { 
-      font-size: 1.2rem; 
-      margin-top: 10px; 
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    header img.profile {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 70px;
+
+    header img {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 2px solid #fff;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
-    }
-    header img.profile:hover {
-      transform: scale(1.1);
+      border: 4px solid #fff;
+      margin-bottom: 15px;
     }
 
-    /* NAVIGATION */
-    nav { text-align: center; padding: 10px; background: #f4f4f4; }
-    nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
-    nav a:hover { color: #0073e6; }
+    header h1 {
+      margin: 10px 0 5px;
+      font-size: 2rem;
+    }
 
-    /* DROPDOWN MENU STYLING */
+    header p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    /* DROPDOWN MENU */
     .dropdown {
       position: fixed;
-      top: 15px;
-      right: 15px;
-      width: 180px;
+      top: 20px;
+      right: 20px;
+      width: 160px;
       background: #2c3e50;
       color: #fff;
       border-radius: 8px;
@@ -66,15 +57,21 @@
       z-index: 1000;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
+
     .dropdown h3 {
       background: linear-gradient(135deg, #1a242f, #16202a);
       margin: 0;
-      padding: 12px;
+      padding: 10px;
       cursor: pointer;
       text-align: center;
+      font-size: 1rem;
       transition: background 0.3s;
     }
-    .dropdown:hover h3 { background: linear-gradient(135deg, #0073e6, #005bb5); }
+
+    .dropdown:hover h3 {
+      background: linear-gradient(135deg, #0073e6, #005bb5);
+    }
+
     .dropdown ul {
       list-style: none;
       padding: 0;
@@ -83,170 +80,107 @@
       overflow: hidden;
       transition: max-height 0.3s ease-out;
     }
+
     .dropdown:hover ul {
-      max-height: 1000px; 
+      max-height: 500px;
       transition: max-height 0.5s ease-in;
     }
+
     .dropdown ul li {
       border-bottom: 1px solid #444;
-      transition: background 0.3s;
     }
+
     .dropdown ul li a {
       display: block;
-      padding: 10px;
+      padding: 8px 10px;
       text-decoration: none;
       color: #fff;
+      font-size: 0.85rem;
       transition: background 0.3s, transform 0.3s;
     }
+
     .dropdown ul li a:hover {
       background: linear-gradient(135deg, #0073e6, #005bb5);
       transform: translateX(5px);
     }
 
-    /* SECTIONS */
-    section { 
-      padding: 40px 20px; 
-      max-width: 900px; 
-      margin: auto; 
-      background: #fff;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    h2 { color: #2c3e50; margin-bottom: 20px; }
-
-    /* PROJECT CARDS */
-    .projects .card {
-      margin-bottom: 20px;
-      padding: 15px;
-      border-radius: 6px;
-      background: #f9f9f9;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .projects .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    /* SOCIAL LINKS */
+    .socials {
+      margin: 30px 0;
     }
 
-    a.button { 
-      display: inline-block; 
-      margin-top: 10px; 
-      padding: 10px 15px; 
-      background: #2c3e50; 
-      color: #fff; 
-      border-radius: 5px; 
-      text-decoration: none; 
-      transition: background 0.3s, transform 0.3s;
-    }
-    a.button:hover { 
-      background: #0073e6; 
-      transform: scale(1.05);
+    .socials a {
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 1.6rem;
+      display: inline-block;
+      transition: transform 0.3s, color 0.3s;
+      color: #333;
     }
 
-    /* FOOTER */
-    footer { 
-      text-align: center; 
-      background: #2c3e50; 
-      color: #fff; 
-      padding: 20px; 
-      margin-top: 40px; 
+    .socials a:hover {
+      transform: scale(1.2);
+      color: #0073e6;
+    }
+
+    /* Animated X (Twitter replacement) */
+    .x-icon {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #000;
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .x-icon:hover {
+      color: #0073e6;
+      transform: rotate(15deg) scale(1.2);
     }
 
     /* QUOTE */
     .quote {
-      text-align: center;
+      margin: 50px 0 20px;
       font-style: italic;
-      font-family: "Georgia", serif;
       font-size: 1.2rem;
-      margin: 15px 0 30px 0;
-      color: #333;
-    }
-
-    /* MOBILE RESPONSIVE */
-    @media (max-width: 768px) {
-      header img.profile { width: 50px; top: 15px; left: 15px; }
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
-
-      nav a { display: block; margin: 5px 0; }
-
-      .dropdown {
-        width: 100%; 
-        border-radius: 0;
-        top: 0;
-        right: 0;
-      }
-      .dropdown ul li a { text-align: center; padding: 12px; }
+      font-family: "Georgia", serif;
+      color: #444;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="passport.png" alt="COLLINS MUTHURI" class="profile">
-    <h1>COLLINS MUTHURI</h1>
-    <p>A Civil Engineer and Trainer</p>
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Dropdown for documents -->
+  <!-- Dropdown Menu -->
   <div class="dropdown">
-    <h3>📂 My Docs</h3>
+    <h3>My Docs</h3>
     <ul>
       <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
       <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
-      <li><a href="docs/kcpe.pdf" target="_blank">KCPE Certificate</a></li>
-      <li><a href="docs/kcse.pdf" target="_blank">KCSE Certificate</a></li>
-      <li><a href="docs/degree.pdf" target="_blank">Degree Certificate</a></li>
-      <li><a href="docs/leaving_cert.pdf" target="_blank">Leaving Certificate</a></li>
-      <li><a href="docs/cv.pdf" target="_blank">Curriculum Vitae (CV)</a></li>
-      <li><a href="docs/transcripts.pdf" target="_blank">University Transcripts</a></li>
+      <li><a href="docs/kcpe.pdf" target="_blank">KCPE</a></li>
+      <li><a href="docs/kcse.pdf" target="_blank">KCSE</a></li>
+      <li><a href="docs/degree.pdf" target="_blank">Degree</a></li>
+      <li><a href="docs/leaving_cert.pdf" target="_blank">Leaving Cert</a></li>
+      <li><a href="docs/cv.pdf" target="_blank">CV</a></li>
+      <li><a href="docs/transcripts.pdf" target="_blank">Transcripts</a></li>
     </ul>
   </div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate Civil Engineer and Trainer with experience in teaching, building construction,
-      and technical training. I enjoy guiding students and professionals in structural design and
-      practical engineering applications. Always eager to explore new projects that combine innovation
-      and real-world problem-solving.
-    </p>
-  </section>
+  <!-- Header Section -->
+  <header>
+    <img src="passport.png" alt="Profile Picture">
+    <h1>Colloh</h1>
+    <p>Welcome to my portfolio</p>
+  </header>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Football Game Website</h3>
-        <p>A simple website project to display football games, match details, and updates for fans.</p>
-        <a href="#" class="button">View Project</a>
-      </div>
-      <div class="card">
-        <h3>Telegram Channel</h3>
-        <p>The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.</p>
-        <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
-      </div>
-    </div>
-  </section>
+  <!-- Social Links -->
+  <div class="socials">
+    <a href="https://wa.me/254700000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="tel:+254700000000"><i class="fas fa-phone"></i></a>
+    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://x.com" target="_blank" class="x-icon">X</a>
+  </div>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:muthuricollins43@gmail.com">muthuricollins43@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/254706415082" target="_blank">+254706415082</a></p>
-    <p>X (Twitter): <a href="https://x.com/futbol_afc" target="_blank">@futbol_afc</a></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 COLLINS MUTHURI | A Civil Engineer and Trainer</p>
-  </footer>
-
-  <!-- Motivational Quote -->
+  <!-- Quote -->
   <div class="quote">
     “Hard work is the only way” – <b>Colloh</b>
   </div>
