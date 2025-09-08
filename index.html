@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
-  <meta name="description" content="Collins Muthuri - Civil Engineer and Trainer with expertise in structural design, construction projects, and technical training.">
   <style>
     body { 
       font-family: "Times New Roman", Times, serif; 
@@ -13,11 +12,8 @@
       line-height: 1.6; 
       background: #f0f2f5;
     }
-
-    /* Smooth scroll */
-    html { scroll-behavior: smooth; }
-
-    /* HEADER */
+    
+    /* HEADER STYLING */
     header {
       background: linear-gradient(135deg, #0073e6, #005bb5);
       color: #fff;
@@ -46,79 +42,71 @@
       border: 2px solid #fff;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
       transition: transform 0.3s;
-      z-index: 2; /* sits above background but below dropdown button, which is off to the right anyway */
     }
-    header img.profile:hover { transform: scale(1.1); }
+    header img.profile:hover {
+      transform: scale(1.1);
+    }
 
-    /* NAV */
+    /* NAVIGATION */
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
     nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
     nav a:hover { color: #0073e6; }
 
-    /* COMPACT DROPDOWN (floating button on the right) */
+    /* DROPDOWN MENU STYLING */
     .dropdown {
       position: fixed;
-      top: 12px;
-      right: 12px;
-      width: min(240px, 90vw);
+      top: 15px;
+      right: 15px;
+      width: 180px;
       background: #2c3e50;
       color: #fff;
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
-      font-size: 0.92rem;
-      z-index: 1000; /* floats above header but doesn't span full width */
-      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
     .dropdown h3 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
       background: linear-gradient(135deg, #1a242f, #16202a);
       margin: 0;
-      padding: 12px 14px;
+      padding: 12px;
       cursor: pointer;
       text-align: center;
-      user-select: none;
+      transition: background 0.3s;
     }
-    .dropdown h3:hover { background: linear-gradient(135deg, #0073e6, #005bb5); }
-    .dropdown .caret {
-      transition: transform 0.25s ease;
-      display: inline-block;
-    }
-    .dropdown.open .caret { transform: rotate(180deg); }
-
+    .dropdown:hover h3 { background: linear-gradient(135deg, #0073e6, #005bb5); }
     .dropdown ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      max-height: 0;
+      max-height: 0; 
       overflow: hidden;
-      transition: max-height 0.35s ease;
+      transition: max-height 0.3s ease-out;
     }
-    .dropdown.open ul {
-      max-height: 60vh;       /* never covers the whole page */
-      overflow-y: auto;        /* scroll if many items */
+    .dropdown:hover ul {
+      max-height: 1000px; 
+      transition: max-height 0.5s ease-in;
     }
-    .dropdown ul li { border-bottom: 1px solid #3b4a58; }
+    .dropdown ul li {
+      border-bottom: 1px solid #444;
+      transition: background 0.3s;
+    }
     .dropdown ul li a {
       display: block;
-      padding: 10px 12px;
+      padding: 10px;
       text-decoration: none;
       color: #fff;
-      transition: background 0.3s, transform 0.2s;
-      will-change: transform;
+      transition: background 0.3s, transform 0.3s;
     }
     .dropdown ul li a:hover {
       background: linear-gradient(135deg, #0073e6, #005bb5);
-      transform: translateX(4px);
+      transform: translateX(5px);
     }
 
     /* SECTIONS */
     section { 
       padding: 40px 20px; 
-      max-width: 1000px; 
+      max-width: 900px; 
       margin: auto; 
       background: #fff;
       margin-bottom: 20px;
@@ -128,23 +116,17 @@
     h2 { color: #2c3e50; margin-bottom: 20px; }
 
     /* PROJECT CARDS */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      padding: 20px;
-      border-radius: 8px;
+    .projects .card {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 6px;
       background: #f9f9f9;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover {
+    .projects .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-    .card h3 { margin-top: 0; }
-    .card-icon { font-size: 2rem; margin-bottom: 10px; }
 
     a.button { 
       display: inline-block; 
@@ -152,60 +134,13 @@
       padding: 10px 15px; 
       background: #2c3e50; 
       color: #fff; 
-      border-radius: 6px; 
+      border-radius: 5px; 
       text-decoration: none; 
       transition: background 0.3s, transform 0.3s;
     }
     a.button:hover { 
       background: #0073e6; 
       transform: scale(1.05);
-    }
-
-    /* CONTACT */
-    .contact-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 8px 10px;
-      padding: 10px 14px;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 0.25s, filter 0.25s, background 0.25s;
-      will-change: transform;
-    }
-    .contact-links a:hover { transform: translateY(-2px); filter: brightness(1.05); }
-
-    .contact-links a.email { background: #0073e6; }
-    .contact-links a.email:hover { background: #005bb5; }
-
-    .contact-links a.whatsapp { background: #25D366; }
-    .contact-links a.whatsapp:hover { background: #1fb257; }
-
-    .contact-links a.x {
-      background: #000;
-    }
-    .contact-links a.x:hover {
-      background: #111;
-    }
-
-    /* Animated X icon */
-    .x-logo {
-      width: 18px;
-      height: 18px;
-      display: inline-block;
-      /* gentle pulse */
-      animation: xPulse 2s ease-in-out infinite;
-    }
-    @keyframes xPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-    /* on hover: a subtle quarter-turn */
-    .contact-links a.x:hover .x-logo {
-      animation: none;
-      transform: rotate(90deg) scale(1.08);
-      transition: transform 0.25s ease;
     }
 
     /* FOOTER */
@@ -216,25 +151,39 @@
       padding: 20px; 
       margin-top: 40px; 
     }
-    footer nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-    footer nav a:hover { text-decoration: underline; }
 
-    /* RESPONSIVE TWEAKS */
+    /* QUOTE */
+    .quote {
+      text-align: center;
+      font-style: italic;
+      font-family: "Georgia", serif;
+      font-size: 1.2rem;
+      margin: 15px 0 30px 0;
+      color: #333;
+    }
+
+    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
 
       nav a { display: block; margin: 5px 0; }
-      /* Keep dropdown compact on mobile, too */
-      .dropdown { top: 10px; right: 10px; width: min(220px, 88vw); }
+
+      .dropdown {
+        width: 100%; 
+        border-radius: 0;
+        top: 0;
+        right: 0;
+      }
+      .dropdown ul li a { text-align: center; padding: 12px; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="passport.png" alt="Passport photo of Collins Muthuri" class="profile">
+    <img src="passport.png" alt="COLLINS MUTHURI" class="profile">
     <h1>COLLINS MUTHURI</h1>
     <p>A Civil Engineer and Trainer</p>
   </header>
@@ -245,24 +194,18 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Compact floating dropdown for documents -->
-  <div class="dropdown" id="docsMenu" aria-label="Documents menu">
-    <h3 id="docsToggle" aria-expanded="false" aria-controls="docsList">
-      <span>📂 My Docs</span>
-      <span class="caret">▾</span>
-    </h3>
-    <ul id="docsList">
+  <!-- Dropdown for documents -->
+  <div class="dropdown">
+    <h3>📂 My Docs</h3>
+    <ul>
       <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
       <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
       <li><a href="docs/kcpe.pdf" target="_blank">KCPE Certificate</a></li>
-      <li><a href="docs/ksce.pdf" target="_blank">KCSE Certificate</a></li>
+      <li><a href="docs/kcse.pdf" target="_blank">KCSE Certificate</a></li>
       <li><a href="docs/degree.pdf" target="_blank">Degree Certificate</a></li>
       <li><a href="docs/leaving_cert.pdf" target="_blank">Leaving Certificate</a></li>
       <li><a href="docs/cv.pdf" target="_blank">Curriculum Vitae (CV)</a></li>
-      <li><a href="docs/transcript1.pdf" target="_blank">Transcript Year 1</a></li>
-      <li><a href="docs/transcript2.pdf" target="_blank">Transcript Year 2</a></li>
-      <li><a href="docs/transcript3.pdf" target="_blank">Transcript Year 3</a></li>
-      <li><a href="docs/transcript4.pdf" target="_blank">Transcript Year 4</a></li>
+      <li><a href="docs/transcripts.pdf" target="_blank">University Transcripts</a></li>
     </ul>
   </div>
 
@@ -280,13 +223,11 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <div class="card-icon">⚽</div>
         <h3>Football Game Website</h3>
         <p>A simple website project to display football games, match details, and updates for fans.</p>
         <a href="#" class="button">View Project</a>
       </div>
       <div class="card">
-        <div class="card-icon">📱</div>
         <h3>Telegram Channel</h3>
         <p>The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.</p>
         <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
@@ -296,49 +237,19 @@
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <div class="contact-links">
-      <a class="email" href="mailto:muthuricollins43@gmail.com">📧 Email</a>
-      <a class="whatsapp" href="https://wa.me/254706415082" target="_blank">💬 WhatsApp</a>
-      <a class="x" href="https://x.com/futbol_afc" target="_blank" aria-label="X (formerly Twitter)">
-        <!-- Animated X icon (inline SVG) -->
-        <svg class="x-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-        X
-      </a>
-    </div>
+    <p>Email: <a href="mailto:muthuricollins43@gmail.com">muthuricollins43@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/254706415082" target="_blank">+254706415082</a></p>
+    <p>X (Twitter): <a href="https://x.com/futbol_afc" target="_blank">@futbol_afc</a></p>
   </section>
 
   <footer>
     <p>&copy; 2025 COLLINS MUTHURI | A Civil Engineer and Trainer</p>
-    <nav>
-      <a href="#about">About</a> | 
-      <a href="#projects">Projects</a> | 
-      <a href="#contact">Contact</a>
-    </nav>
   </footer>
 
-  <!-- Dropdown toggle script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const dropdown = document.getElementById("docsMenu");
-      const toggle = document.getElementById("docsToggle");
-
-      // toggle open/closed on click
-      toggle.addEventListener("click", () => {
-        const isOpen = dropdown.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", String(isOpen));
-      });
-
-      // close when clicking outside
-      document.addEventListener("click", (e) => {
-        if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-  </script>
+  <!-- Motivational Quote -->
+  <div class="quote">
+    “Hard work is the only way” – <b>Colloh</b>
+  </div>
 
 </body>
 </html>
