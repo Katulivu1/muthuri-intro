@@ -16,6 +16,9 @@
       --text-color: #2c3e50;
       --bg-color: #f0f2f5;
       --white: #fff;
+      --card-bg: #f9f9f9;
+      --border-light: #ddd;
+      --text-light: #444;
       --shadow: 0 4px 8px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
     }
@@ -23,6 +26,9 @@
       --bg-color: #1a1a1a;
       --white: #2c2c2c;
       --text-color: #f0f2f5;
+      --card-bg: #333;
+      --border-light: #555;
+      --text-light: #ccc;
       --shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
     body { 
@@ -37,7 +43,7 @@
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: var(--white);
-      padding: 80px 20px 60px 20px;
+      padding: 120px 20px 60px 20px;
       text-align: center;
       position: relative;
       box-shadow: var(--shadow);
@@ -76,8 +82,8 @@
       transition: var(--transition);
       cursor: pointer;
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      left: 10px;
     }
     header img.profile:hover {
       transform: scale(1.1);
@@ -146,7 +152,7 @@
       margin: 0;
     }
     .hamburger-menu ul li {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border-light);
     }
     .hamburger-menu ul li a {
       display: block;
@@ -165,7 +171,7 @@
       align-items: center;
       padding: 12px 15px;
       cursor: pointer;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border-light);
       background: none;
       width: 100%;
       text-align: left;
@@ -334,6 +340,9 @@
       box-shadow: var(--shadow);
       text-align: center;
     }
+    [data-theme="dark"] #contact {
+      background: linear-gradient(135deg, var(--white), #2a2a2a);
+    }
     #contact .contact-box {
       position: relative;
       padding: 20px;
@@ -342,6 +351,10 @@
       background: linear-gradient(135deg, #f0f4f8, var(--white)) padding-box,
                   linear-gradient(45deg, var(--accent-color), var(--primary-color)) border-box;
       box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] #contact .contact-box {
+      background: linear-gradient(135deg, #2a2a2a, var(--white)) padding-box,
+                  linear-gradient(45deg, var(--accent-color), var(--primary-color)) border-box;
     }
     #contact .contact-box::before {
       content: '✿';
@@ -398,7 +411,7 @@
       margin-bottom: 20px;
       padding: 15px;
       border-radius: 6px;
-      background: #f9f9f9;
+      background: var(--card-bg);
       transition: var(--transition);
       cursor: pointer;
     }
@@ -433,7 +446,7 @@
     }
     .project-description p {
       margin: 0 0 10px;
-      color: #444;
+      color: var(--text-light);
     }
     .project-image {
       width: 100%;
@@ -474,11 +487,12 @@
       gap: 10px;
     }
     .skills-list li {
-      background: #f9f9f9;
+      background: var(--card-bg);
       padding: 10px;
       border-radius: 5px;
       text-align: center;
       transition: var(--transition);
+      color: var(--text-color);
     }
     .skills-list li:hover {
       background: var(--primary-color);
@@ -487,8 +501,9 @@
     .education-item {
       margin-bottom: 20px;
       padding: 15px;
-      background: #f9f9f9;
+      background: var(--card-bg);
       border-radius: 5px;
+      color: var(--text-color);
     }
     .contact-form {
       max-width: 600px;
@@ -499,8 +514,15 @@
     }
     .contact-form input, .contact-form textarea {
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-light);
       border-radius: 5px;
+      background: var(--white);
+      color: var(--text-color);
+    }
+    [data-theme="dark"] .contact-form input, 
+    [data-theme="dark"] .contact-form textarea {
+      background: #444;
+      color: var(--text-color);
     }
     .contact-form button {
       padding: 10px;
@@ -527,7 +549,7 @@
       font-style: italic;
       font-size: 1.2rem;
       font-family: "Georgia", serif;
-      color: #444;
+      color: var(--text-light);
       max-width: 900px;
       margin: 20px auto;
     }
@@ -540,7 +562,14 @@
       box-shadow: var(--shadow);
     }
     @media (max-width: 768px) {
-      header img.profile { width: 50px; top: 15px; left: 15px; }
+      header {
+        padding: 100px 20px 60px 20px;
+      }
+      header img.profile { 
+        width: 50px; 
+        top: 10px; 
+        left: 10px; 
+      }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
       header .tagline { font-size: 1.1rem; }
@@ -798,7 +827,10 @@
       document.querySelectorAll('#privacy-section, #settings-section').forEach(sec => sec.style.display = 'none');
       document.getElementById(type + '-section').style.display = 'block';
       document.querySelector('.hamburger-menu').classList.remove('active');
-      document.querySelector('nav a[href="#' + type + '-section"]').click(); // Smooth scroll
+      const target = document.getElementById(type + '-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     // Theme toggle
