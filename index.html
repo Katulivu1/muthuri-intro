@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
   <meta name="description" content="Collins Muthuri - Civil Engineer and Trainer with expertise in structural design, construction projects, and technical training.">
   <style>
@@ -16,7 +16,7 @@
 
     /* Smooth scroll */
     html { scroll-behavior: smooth; }
-    
+
     /* HEADER */
     header {
       background: linear-gradient(135deg, #0073e6, #005bb5);
@@ -46,6 +46,7 @@
       border: 2px solid #fff;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
       transition: transform 0.3s;
+      z-index: 2; /* sits above background but below dropdown button, which is off to the right anyway */
     }
     header img.profile:hover { transform: scale(1.1); }
 
@@ -54,50 +55,64 @@
     nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
     nav a:hover { color: #0073e6; }
 
-    /* DROPDOWN */
+    /* COMPACT DROPDOWN (floating button on the right) */
     .dropdown {
       position: fixed;
-      top: 0;
-      right: 0;
-      width: 180px;
+      top: 12px;
+      right: 12px;
+      width: min(240px, 90vw);
       background: #2c3e50;
       color: #fff;
-      border-radius: 0 0 0 8px;
+      border-radius: 12px;
       overflow: hidden;
-      font-size: 0.9rem;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      font-size: 0.92rem;
+      z-index: 1000; /* floats above header but doesn't span full width */
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.06);
     }
     .dropdown h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       background: linear-gradient(135deg, #1a242f, #16202a);
       margin: 0;
-      padding: 15px;
+      padding: 12px 14px;
       cursor: pointer;
       text-align: center;
-      transition: background 0.3s;
+      user-select: none;
     }
     .dropdown h3:hover { background: linear-gradient(135deg, #0073e6, #005bb5); }
+    .dropdown .caret {
+      transition: transform 0.25s ease;
+      display: inline-block;
+    }
+    .dropdown.open .caret { transform: rotate(180deg); }
+
     .dropdown ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      max-height: 0; 
+      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease-out;
+      transition: max-height 0.35s ease;
     }
-    .dropdown ul li {
-      border-bottom: 1px solid #444;
+    .dropdown.open ul {
+      max-height: 60vh;       /* never covers the whole page */
+      overflow-y: auto;        /* scroll if many items */
     }
+    .dropdown ul li { border-bottom: 1px solid #3b4a58; }
     .dropdown ul li a {
       display: block;
-      padding: 10px;
+      padding: 10px 12px;
       text-decoration: none;
       color: #fff;
-      transition: background 0.3s, transform 0.3s;
+      transition: background 0.3s, transform 0.2s;
+      will-change: transform;
     }
     .dropdown ul li a:hover {
       background: linear-gradient(135deg, #0073e6, #005bb5);
-      transform: translateX(5px);
+      transform: translateX(4px);
     }
 
     /* SECTIONS */
@@ -129,10 +144,7 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
     .card h3 { margin-top: 0; }
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+    .card-icon { font-size: 2rem; margin-bottom: 10px; }
 
     a.button { 
       display: inline-block; 
@@ -140,7 +152,7 @@
       padding: 10px 15px; 
       background: #2c3e50; 
       color: #fff; 
-      border-radius: 5px; 
+      border-radius: 6px; 
       text-decoration: none; 
       transition: background 0.3s, transform 0.3s;
     }
@@ -151,18 +163,49 @@
 
     /* CONTACT */
     .contact-links a {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       margin: 8px 10px;
-      padding: 10px 15px;
-      background: #0073e6;
+      padding: 10px 14px;
       color: #fff;
-      border-radius: 6px;
+      border-radius: 8px;
       text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
+      transition: transform 0.25s, filter 0.25s, background 0.25s;
+      will-change: transform;
     }
-    .contact-links a:hover {
-      background: #005bb5;
-      transform: scale(1.05);
+    .contact-links a:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+    .contact-links a.email { background: #0073e6; }
+    .contact-links a.email:hover { background: #005bb5; }
+
+    .contact-links a.whatsapp { background: #25D366; }
+    .contact-links a.whatsapp:hover { background: #1fb257; }
+
+    .contact-links a.x {
+      background: #000;
+    }
+    .contact-links a.x:hover {
+      background: #111;
+    }
+
+    /* Animated X icon */
+    .x-logo {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      /* gentle pulse */
+      animation: xPulse 2s ease-in-out infinite;
+    }
+    @keyframes xPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    /* on hover: a subtle quarter-turn */
+    .contact-links a.x:hover .x-logo {
+      animation: none;
+      transform: rotate(90deg) scale(1.08);
+      transition: transform 0.25s ease;
     }
 
     /* FOOTER */
@@ -173,21 +216,18 @@
       padding: 20px; 
       margin-top: 40px; 
     }
-    footer nav a { color: #fff; margin: 0 10px; }
+    footer nav a { color: #fff; margin: 0 10px; text-decoration: none; }
+    footer nav a:hover { text-decoration: underline; }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE TWEAKS */
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
 
       nav a { display: block; margin: 5px 0; }
-
-      .dropdown {
-        width: 100%; 
-        border-radius: 0;
-      }
-      .dropdown ul li a { text-align: center; padding: 12px; }
+      /* Keep dropdown compact on mobile, too */
+      .dropdown { top: 10px; right: 10px; width: min(220px, 88vw); }
     }
   </style>
 </head>
@@ -205,10 +245,13 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Dropdown for documents -->
-  <div class="dropdown">
-    <h3>📂 My Docs</h3>
-    <ul>
+  <!-- Compact floating dropdown for documents -->
+  <div class="dropdown" id="docsMenu" aria-label="Documents menu">
+    <h3 id="docsToggle" aria-expanded="false" aria-controls="docsList">
+      <span>📂 My Docs</span>
+      <span class="caret">▾</span>
+    </h3>
+    <ul id="docsList">
       <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
       <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
       <li><a href="docs/kcpe.pdf" target="_blank">KCPE Certificate</a></li>
@@ -254,9 +297,15 @@
   <section id="contact">
     <h2>Contact Me</h2>
     <div class="contact-links">
-      <a href="mailto:muthuricollins43@gmail.com">📧 Email</a>
-      <a href="https://wa.me/254706415082" target="_blank">💬 WhatsApp</a>
-      <a href="https://x.com/futbol_afc" target="_blank">🐦 Twitter</a>
+      <a class="email" href="mailto:muthuricollins43@gmail.com">📧 Email</a>
+      <a class="whatsapp" href="https://wa.me/254706415082" target="_blank">💬 WhatsApp</a>
+      <a class="x" href="https://x.com/futbol_afc" target="_blank" aria-label="X (formerly Twitter)">
+        <!-- Animated X icon (inline SVG) -->
+        <svg class="x-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        X
+      </a>
     </div>
   </section>
 
@@ -272,13 +321,20 @@
   <!-- Dropdown toggle script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.querySelector(".dropdown h3");
-      const menu = document.querySelector(".dropdown ul");
+      const dropdown = document.getElementById("docsMenu");
+      const toggle = document.getElementById("docsToggle");
+
+      // toggle open/closed on click
       toggle.addEventListener("click", () => {
-        if (menu.style.maxHeight) {
-          menu.style.maxHeight = null;
-        } else {
-          menu.style.maxHeight = menu.scrollHeight + "px";
+        const isOpen = dropdown.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      // close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
         }
       });
     });
