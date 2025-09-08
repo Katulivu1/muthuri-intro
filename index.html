@@ -30,9 +30,9 @@
     }
     header .tagline {
       display: block;
-      font-style: italic;
       font-family: 'Georgia', serif;
       font-size: 1.3rem;
+      font-weight: bold;
       color: #2ecc71;
       text-decoration: underline;
       text-transform: uppercase;
@@ -55,7 +55,7 @@
       transition: transform 0.3s;
       cursor: pointer;
     }
-    header img.profile:hover {
+    headerQVimg.profile:hover {
       transform: scale(1.1);
     }
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
@@ -126,18 +126,22 @@
     }
     .modal-content {
       width: 80%;
-      max-width: 800px;
+      max-width: 600px;
       max-height: 80vh;
       background: #fff;
       padding: 15px;
       border-radius: 8px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .modal-image {
       width: 100%;
-      max-width: 500px;
-      height: auto;
+      max-width: 400px;
+      height: 400px;
+      object-fit: cover;
       border-radius: 8px;
       border: 2px solid #fff;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -183,6 +187,26 @@
       border-radius: 12px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
+    }
+    #contact .contact-box {
+      position: relative;
+      padding: 20px;
+      border: 4px solid transparent;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f0f4f8, #ffffff) padding-box,
+                  linear-gradient(45deg, #2ecc71, #3498db) border-box;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #contact .contact-box::before {
+      content: '✿';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #2ecc71;
+      background: #ffffff;
+      padding: 0 10px;
     }
     #contact h2 {
       color: #2c3e50;
@@ -275,6 +299,13 @@
       display: block;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    .project-divider {
+      border: 0;
+      height: 4px;
+      background: #2c3e50;
+      margin: 20px 0;
+      border-radius: 2px;
+    }
     a.button { 
       display: inline-block; 
       margin-top: 10px; 
@@ -315,9 +346,14 @@
         max-width: 95%;
         max-height: 70vh;
       }
-      .modal-image { max-width: 300px; }
+      .modal-image {
+        max-width: 300px;
+        height: 300px;
+      }
       #documentIframe { height: 50vh; }
       #contact h2 { font-size: 1.5rem; }
+      #contact .contact-box { padding: 15px; }
+      #contact .contact-box::before { font-size: 1.5rem; top: -10px; }
       .socials { gap: 15px; }
       .socials a { font-size: 1.8rem; }
       .x-icon { font-size: 1.6rem; }
@@ -391,6 +427,7 @@
           <a href="https://building-fire-resistance.onrender.com/" target="_blank" class="button">View Project</a>
         </div>
       </div>
+      <hr class="project-divider">
       <div class="card">
         <h3 onclick="toggleDescription('telegram')">Telegram Channel</h3>
         <div id="telegram" class="project-description">
@@ -398,7 +435,7 @@
           <p>
             The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.
           </p>
-          <img src="images/telegram.jpg" alt="Telegram Channel" class="project-image">
+          <img src="images/telegram.png" alt="Telegram Channel" class="project-image">
           <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
         </div>
       </div>
@@ -406,12 +443,14 @@
   </section>
 
   <section id="contact">
-    <h2>Contact Me 👇</h2>
-    <div class="socials">
-      <a href="mailto:muthuricollins43@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://wa.me/254706415082" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="tel:+254706415082" title="Phone"><i class="fas fa-phone"></i></a>
-      <a href="https://x.com/futbol_afc" target="_blank" title="X" class="x-icon">X</a>
+    <div class="contact-box">
+      <h2>Contact Me 👇</h2>
+      <div class="socials">
+        <a href="mailto:muthuricollins43@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/254706415082" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+254706415082" title="Phone"><i class="fas fa-phone"></i></a>
+        <a href="https://x.com/futbol_afc" target="_blank" title="X" class="x-icon">X</a>
+      </div>
     </div>
   </section>
 
