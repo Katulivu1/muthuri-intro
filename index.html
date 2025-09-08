@@ -57,10 +57,12 @@
       margin-top: 10px; 
       text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
-    header img.profile {
+    header .profile-container {
       position: absolute;
       top: 20px;
       left: 20px;
+    }
+    header img.profile {
       width: 70px;
       border-radius: 50%;
       border: 2px solid #fff;
@@ -70,6 +72,24 @@
     }
     header img.profile:hover {
       transform: scale(1.1);
+    }
+    header .edit-icon {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 1.2rem;
+      color: #fff;
+      background: #2c3e50;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    header .edit-icon:hover {
+      background: #0073e6;
     }
     .settings-icon {
       position: absolute;
@@ -99,7 +119,7 @@
       transition: max-height 0.3s ease-out;
     }
     .settings-menu.active {
-      max-height: 300px;
+      max-height: 200px;
     }
     .settings-menu h3 {
       background: linear-gradient(135deg, #1a242f, #16202a);
@@ -116,16 +136,6 @@
     .settings-menu ul li {
       border-bottom: 1px solid #444;
       padding: 10px;
-    }
-    .settings-menu ul li label {
-      display: block;
-      color: #fff;
-      cursor: pointer;
-    }
-    .settings-menu ul li input[type="file"] {
-      display: block;
-      margin-top: 5px;
-      color: #fff;
     }
     .settings-menu ul li a, .settings-menu ul li button {
       display: block;
@@ -433,7 +443,9 @@
       color: var(--text-color);
     }
     @media (max-width: 768px) {
-      header img.profile { width: 50px; top: 15px; left: 15px; }
+      header .profile-container { top: 15px; left: 15px; }
+      header img.profile { width: 50px; }
+      header .edit-icon { top: -3px; right: -3px; width: 15px; height: 15px; line-height: 15px; font-size: 0.9rem; }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
       header .tagline { font-size: 1.1rem; }
@@ -473,7 +485,10 @@
 </head>
 <body>
   <header>
-    <img src="images/profile.png" alt="COLLINS MUTHURI" class="profile" id="profileImage" onclick="showModal()">
+    <div class="profile-container">
+      <img src="images/profile.png" alt="COLLINS MUTHURI" class="profile" id="profileImage" onclick="showModal()">
+      <i class="fas fa-pencil-alt edit-icon" onclick="uploadProfilePhoto(event)"></i>
+    </div>
     <h1>COLLINS MUTHURI</h1>
     <span class="tagline">SMALL MAN WITH BIG GOD</span>
     <p>A Civil Engineer and Trainer</p>
@@ -483,10 +498,6 @@
   <div class="settings-menu" id="settingsMenu">
     <h3>Settings</h3>
     <ul>
-      <li>
-        <label for="profilePhotoInput">Change Profile Photo</label>
-        <input type="file" id="profilePhotoInput" accept="image/png,image/jpeg">
-      </li>
       <li>
         <button onclick="toggleTheme()">Toggle Theme</button>
       </li>
@@ -631,73 +642,38 @@
     });
 
     // Profile photo upload
-    function uploadProfilePhoto() {
-      const fileInput = document.getElementById('profilePhotoInput');
-      const file = fileInput.files[0];
-      if (!file) {
-        alert('Please select an image file.');
-        return;
-      }
-      if (!file.type.match('image/(png|jpeg)')) {
-        alert('Please select a PNG or JPEG image.');
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size must be less than 5MB.');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('profilePhoto', file);
-
-      fetch('/api/upload-profile', {
-        method: 'POST',
-        body: formData
-      }).then(response => response.json()).then(data => {
-        if (data.success) {
-          const newImageUrl = `images/profile.png?${new Date().getTime()}`;
-          document.getElementById('profileImage').src = newImageUrl;
-          document.getElementById('profileModalImage').src = newImageUrl;
-          alert('Profile photo updated successfully!');
-        } else {
-          alert('Error uploading photo: ' + (data.message || 'Unknown error'));
+    function uploadProfilePhoto(event) {
+      event.stopPropagation(); // Prevent modal from opening
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'image/png,image/jpeg';
+      fileInput.onchange = function() {
+        const file = fileInput.files[0];
+        if (!file) {
+          alert('Please select an image file.');
+          return;
         }
-      }).catch(error => {
-        console.error('Upload error:', error);
-        alert('Error connecting to server. Please try again.');
-      });
-    }
+        if (!file.type.match('image/(png|jpeg)')) {
+          alert('Please select a PNG or JPEG image.');
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          alert('File size must be less than 5MB.');
+          return;
+        }
 
-    // Dropdown toggle
-    function toggleDropdown() {
-      const dropdown = document.querySelector('.dropdown');
-      dropdown.classList.toggle('active');
-      console.log('Dropdown toggled');
-    }
+        const formData = new FormData();
+        formData.append('profilePhoto', file);
 
-    document.addEventListener
-        // Project description toggle
-    function toggleDescription(id) {
-      const description = document.getElementById(id);
-      if (!description) {
-        console.error(`No element found with id: ${id}`);
-        return;
-      }
-      const isActive = description.classList.contains('active');
-      document.querySelectorAll('.project-description').forEach(desc => {
-        desc.classList.remove('active');
-        desc.style.maxHeight = '0';
-        desc.style.opacity = '0';
-      });
-      if (!isActive) {
-        description.classList.add('active');
-        description.style.maxHeight = description.scrollHeight + 'px';
-        description.style.opacity = '1';
-        console.log(`Toggled description for id: ${id}`);
-      }
-    }
-
-    // Ensure links work
+        fetch('/api/upload-profile', {
+          method: 'POST',
+          body: formData
+        }).then(response => response.json()).then(data => {
+          if (data.success) {
+            const newImageUrl = `images/profile.png?${new Date().getTime()}`;
+            document.getElementById('profileImage').src = newImageUrl;
+            document.getElementById('profileModalImage').src = newImageU
+                // Ensure links work
     document.querySelectorAll('a.button').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
