@@ -6,7 +6,6 @@
   <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
   <style>
     :root {
       --bg-color: #f0f2f5;
@@ -264,20 +263,6 @@
       height: 60vh;
       border: none;
     }
-    #emailForm, #codeForm {
-      text-align: center;
-      width: 100%;
-    }
-    #emailForm input, #codeForm input {
-      padding: 10px;
-      margin: 10px 0;
-      width: 80%;
-      max-width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: var(--section-bg);
-      color: var(--text-color);
-    }
     section { 
       padding: 40px 20px; 
       max-width: 900px; 
@@ -375,7 +360,6 @@
     .projects .card h3 {
       margin: 0;
       color: var(--text-color);
-      font-family: 'Roboto', 'Times New Roman', Times, serif;
       font-size: 1.5rem;
       transition: color 0.3s;
     }
@@ -501,7 +485,7 @@
     <ul>
       <li>
         <label for="profilePhotoInput">Change Profile Photo</label>
-        <input type="file" id="profilePhotoInput" accept="image/png,image/jpeg" onchange="uploadProfilePhoto()">
+        <input type="file" id="profilePhotoInput" accept="image/png,image/jpeg">
       </li>
       <li>
         <button onclick="toggleTheme()">Toggle Theme</button>
@@ -540,18 +524,8 @@
   <div id="documentModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="hideDocumentModal()">&times;</span>
-      <div id="emailForm">
-        <h3>Request Access Code</h3>
-        <input type="email" id="emailInput" placeholder="Enter your email" required>
-        <button onclick="requestCode()" class="button">Request Code</button>
-      </div>
-      <div id="codeForm" style="display: none;">
-        <h3>Enter Access Code</h3>
-        <input type="text" id="codeInput" placeholder="Enter the code sent to your email" required>
-        <button onclick="verifyCode()" class="button">Submit Code</button>
-      </div>
-      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none; display: none;"></iframe>
-      <a id="downloadButton" href="#" class="button" style="display: none; text-align: center; margin: 10px auto;">Download Document</a>
+      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none;"></iframe>
+      <a id="downloadButton" href="#" class="button" style="display: block; text-align: center; margin: 10px auto;">Download Document</a>
     </div>
   </div>
 
@@ -626,18 +600,11 @@
   </footer>
 
   <script>
-    // Initialize EmailJS (replace with your EmailJS user ID)
-    (function(){
-      emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS user ID
-    })();
-
-    // Global variable to store the requested document URL
-    let currentDocumentUrl = '';
-
     // Settings menu toggle
     function toggleSettings() {
       const settingsMenu = document.getElementById('settingsMenu');
       settingsMenu.classList.toggle('active');
+      console.log('Settings menu toggled');
     }
 
     document.addEventListener('click', (e) => {
@@ -650,10 +617,11 @@
 
     // Theme toggle
     function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      console.log(`Theme switched to ${newTheme}`);
     }
 
     // Load saved theme
@@ -671,4 +639,40 @@
         return;
       }
       if (!file.type.match('image/(png|jpeg)')) {
-        alert('Please select a PNG
+        alert('Please select a PNG or JPEG image.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('profilePhoto', file);
+
+      fetch('/api/upload-profile', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.json()).then(data => {
+        if (data.success) {
+          const newImageUrl = `images/profile.png?${new Date().getTime()}`;
+          document.getElementById('profileImage').src = newImageUrl;
+          document.getElementById('profileModalImage').src = newImageUrl;
+          alert('Profile photo updated successfully!');
+        } else {
+          alert('Error uploading photo: ' + (data.message || 'Unknown error'));
+        }
+      }).catch(error => {
+        console.error('Upload error:', error);
+        alert('Error connecting to server. Please try again.');
+      });
+    }
+
+    // Dropdown toggle
+    function toggleDropdown() {
+      const dropdown = document.querySelector('.dropdown');
+      dropdown.classList.toggle('active');
+      console.log('Dropdown toggled');
+    }
+
+    document.addEventListener
