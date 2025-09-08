@@ -33,9 +33,9 @@
       font-style: italic;
       font-family: 'Georgia', serif;
       font-size: 1.1rem;
-      color: #f0f2f5;
+      color: #e63946;
       margin: 5px 0 10px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
     header p { 
       font-size: 1.2rem; 
@@ -117,17 +117,20 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.6);
       z-index: 2000;
       justify-content: center;
       align-items: center;
     }
     .modal-content {
-      max-width: 90%;
-      max-height: 90%;
+      width: 80%;
+      max-width: 800px;
+      max-height: 80vh;
       background: #fff;
-      padding: 10px;
+      padding: 15px;
       border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
     }
     .modal-image {
       width: 100%;
@@ -155,6 +158,11 @@
     .close-button:hover {
       background: #0073e6;
     }
+    #documentIframe {
+      width: 100%;
+      height: 60vh;
+      border: none;
+    }
     section { 
       padding: 40px 20px; 
       max-width: 900px; 
@@ -176,7 +184,7 @@
     }
     #contact h2 {
       color: #2c3e50;
-      font-family: 'Roboto', 'Times New Roman', Times, serif;
+      font-family: 'Gabriola', 'Georgia', serif;
       font-size: 2rem;
       margin-bottom: 30px;
       text-transform: uppercase;
@@ -220,10 +228,50 @@
       border-radius: 6px;
       background: #f9f9f9;
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
     .projects .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .projects .card h3 {
+      margin: 0;
+      color: #2c3e50;
+      font-family: 'Roboto', 'Times New Roman', Times, serif;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    .projects .card h3:hover {
+      color: #0073e6;
+    }
+    .project-description {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+    .project-description.active {
+      max-height: 500px;
+      opacity: 1;
+      padding-top: 10px;
+    }
+    .project-description h4 {
+      margin: 0 0 10px;
+      color: #2c3e50;
+      font-size: 1.2rem;
+    }
+    .project-description p {
+      margin: 0 0 10px;
+      color: #444;
+    }
+    .project-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 6px;
+      margin: 10px 0;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     a.button { 
       display: inline-block; 
@@ -260,13 +308,20 @@
         right: 15px;
       }
       .dropdown ul li a { text-align: center; padding: 10px; }
+      .modal-content {
+        width: 90%;
+        max-width: 95%;
+        max-height: 70vh;
+      }
       .modal-image { max-width: 300px; }
-      .modal-content { padding: 5px; }
-      #documentIframe { height: 60vh; }
+      #documentIframe { height: 50vh; }
       #contact h2 { font-size: 1.5rem; }
       .socials { gap: 15px; }
       .socials a { font-size: 1.8rem; }
       .x-icon { font-size: 1.6rem; }
+      .projects .card h3 { font-size: 1.3rem; }
+      .project-description h4 { font-size: 1.1rem; }
+      .project-image { max-width: 200px; }
     }
   </style>
 </head>
@@ -302,7 +357,7 @@
   <div id="documentModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="hideDocumentModal()">&times;</span>
-      <iframe id="documentIframe" src="" style="width: 100%; height: 80vh; border: none;"></iframe>
+      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none;"></iframe>
       <a id="downloadButton" href="#" class="button" style="display: block; text-align: center; margin: 10px auto;">Download Document</a>
     </div>
   </div>
@@ -327,26 +382,37 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <h3>Football Game Website</h3>
-        <p>A simple website project to display football games, match details, and updates for fans.</p>
-        <a href="#" class="button">View Project</a>
+        <h3 onclick="toggleDescription('fire-resistance')">Predicting Fire Resistance in Buildings Using Machine Learning</h3>
+        <div id="fire-resistance" class="project-description" style="display: none;">
+          <h4>Predicting Fire Resistance in Buildings Using Machine Learning</h4>
+          <p>By Patrick and Collins</p>
+          <p>
+            This project uses machine learning to predict fire resistance of buildings based on structural and material properties. It analyzes data to estimate how long structures can withstand fire, aiding engineers and architects in designing safer buildings.
+          </p>
+          <a href="https://building-fire-resistance.onrender.com/" target="_blank" class="button">View Project</a>
+        </div>
       </div>
       <div class="card">
-        <h3>Telegram Channel</h3>
-        <p>The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.</p>
-        <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
+        <h3 onclick="toggleDescription('telegram')">Telegram Channel</h3>
+        <div id="telegram" class="project-description" style="display: none;">
+          <h4>Telegram Channel</h4>
+          <p>
+            The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.
+          </p>
+          <img src="images/telegram.jpg" alt="Telegram Channel" class="project-image">
+          <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Me</h2>
+    <h2>Contact Me 👇</h2>
     <div class="socials">
       <a href="mailto:muthuricollins43@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
       <a href="https://wa.me/254706415082" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="tel:+254706415082" title="Phone"><i class="fas fa-phone"></i></a>
       <a href="https://x.com/futbol_afc" target="_blank" title="X" class="x-icon">X</a>
-    boss
     </div>
   </section>
 
@@ -423,6 +489,22 @@
           });
       });
     });
+
+    // Project description toggle
+    function toggleDescription(id) {
+      const description = document.getElementById(id);
+      const isActive = description.classList.contains('active');
+      document.querySelectorAll('.project-description').forEach(desc => {
+        desc.classList.remove('active');
+        desc.style.maxHeight = '0';
+        desc.style.opacity = '0';
+      });
+      if (!isActive) {
+        description.classList.add('active');
+        description.style.maxHeight = description.scrollHeight + 'px';
+        description.style.opacity = '1';
+      }
+    }
   </script>
 </body>
 </html>
