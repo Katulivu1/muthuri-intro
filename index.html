@@ -55,7 +55,7 @@
       transition: transform 0.3s;
       cursor: pointer;
     }
-    headerQVimg.profile:hover {
+    header img.profile:hover {
       transform: scale(1.1);
     }
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
@@ -298,6 +298,7 @@
       margin: 10px 0;
       display: block;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer; /* Indicate clickability */
     }
     .project-divider {
       border: 0;
@@ -389,6 +390,13 @@
     </div>
   </div>
 
+  <div id="telegramModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="hideTelegramModal()">&times;</span>
+      <img src="images/telegram.png" alt="Telegram Channel" class="modal-image">
+    </div>
+  </div>
+
   <div id="documentModal" class="modal">
     <div class="modal-content">
       <span class="close-button" onclick="hideDocumentModal()">&times;</span>
@@ -409,7 +417,7 @@
       I am a passionate Civil Engineer and Trainer with experience in teaching, building construction,
       and technical training. I enjoy guiding students and professionals in structural design and
       practical engineering applications. Always eager to explore new projects that combine innovation
-      and real-world problem-solving.Final part and the most important I love my wife ONEIS & DAUGHTER ADIE.
+      and real-world problem-solving.
     </p>
   </section>
 
@@ -435,7 +443,7 @@
           <p>
             The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.
           </p>
-          <img src="images/telegram.png" alt="Telegram Channel" class="project-image">
+          <img src="images/telegram.png" alt="Telegram Channel" class="project-image" onclick="showTelegramModal()">
           <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
         </div>
       </div>
@@ -488,6 +496,19 @@
     document.getElementById('profileModal').addEventListener('click', (e) => {
       if (e.target.classList.contains('modal')) {
         hideModal();
+      }
+    });
+
+    // Telegram modal
+    function showTelegramModal() {
+      document.getElementById('telegramModal').style.display = 'flex';
+    }
+    function hideTelegramModal() {
+      document.getElementById('telegramModal').style.display = 'none';
+    }
+    document.getElementById('telegramModal').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        hideTelegramModal();
       }
     });
 
