@@ -9,7 +9,14 @@
     header { background: #0073e6; color: #fff; padding: 60px 20px; text-align: center; position: relative; }
     header h1 { margin: 0; font-size: 2.5rem; }
     header p { font-size: 1.2rem; margin-top: 10px; }
-    header img.profile { position: absolute; top: 20px; left: 20px; width: 100px; border-radius: 50%; border: 3px solid #fff; }
+    header img.profile {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 70px;  /* smaller */
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
 
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
     nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; }
@@ -19,11 +26,12 @@
       position: fixed;
       top: 100px;
       right: 0;
-      width: 200px;
+      width: 150px; /* smaller */
       background: #2c3e50;
       color: #fff;
       border-radius: 8px 0 0 8px;
       overflow: hidden;
+      font-size: 0.9rem; /* smaller text */
     }
     .dropdown h3 {
       background: #1a242f;
@@ -76,7 +84,7 @@
 
   <!-- Dropdown for documents (RIGHT SIDE) -->
   <div class="dropdown">
-    <h3 onclick="toggleMenu()">📂 My Documents</h3>
+    <h3 onclick="toggleMenu()">📂 My Docs</h3>
     <ul id="menu">
       <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
       <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
@@ -85,10 +93,10 @@
       <li><a href="docs/degree.pdf" target="_blank">Degree Certificate</a></li>
       <li><a href="docs/leaving_cert.pdf" target="_blank">Leaving Certificate</a></li>
       <li><a href="docs/cv.pdf" target="_blank">Curriculum Vitae (CV)</a></li>
-      <li><a href="docs/transcript1.pdf" target="_blank">Transcript 1</a></li>
-      <li><a href="docs/transcript2.pdf" target="_blank">Transcript 2</a></li>
-      <li><a href="docs/transcript3.pdf" target="_blank">Transcript 3</a></li>
-      <li><a href="docs/transcript4.pdf" target="_blank">Transcript 4</a></li>
+      <li><a href="docs/transcript1.pdf" target="_blank">Transcript Year 1</a></li>
+      <li><a href="docs/transcript2.pdf" target="_blank">Transcript Year 2</a></li>
+      <li><a href="docs/transcript3.pdf" target="_blank">Transcript Year 3</a></li>
+      <li><a href="docs/transcript4.pdf" target="_blank">Transcript Year 4</a></li>
     </ul>
   </div>
 
