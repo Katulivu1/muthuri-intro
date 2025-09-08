@@ -32,8 +32,9 @@
       display: block;
       font-style: italic;
       font-family: 'Georgia', serif;
-      font-size: 1.1rem;
-      color: #e63946;
+      font-size: 1.3rem;
+      color: #000000;
+      text-decoration: underline;
       margin: 5px 0 10px;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
@@ -247,11 +248,11 @@
     .project-description {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
       opacity: 0;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
     }
     .project-description.active {
-      max-height: 500px;
+      max-height: 600px;
       opacity: 1;
       padding-top: 10px;
     }
@@ -300,7 +301,7 @@
       header img.profile { width: 50px; top: 15px; left: 15px; }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
-      header .tagline { font-size: 0.9rem; }
+      header .tagline { font-size: 1.1rem; }
       nav a { display: block; margin: 5px 0; }
       .dropdown {
         width: 140px;
@@ -383,7 +384,7 @@
     <div class="projects">
       <div class="card">
         <h3 onclick="toggleDescription('fire-resistance')">Predicting Fire Resistance in Buildings Using Machine Learning</h3>
-        <div id="fire-resistance" class="project-description" style="display: none;">
+        <div id="fire-resistance" class="project-description">
           <h4>Predicting Fire Resistance in Buildings Using Machine Learning</h4>
           <p>By Patrick and Collins</p>
           <p>
@@ -394,7 +395,7 @@
       </div>
       <div class="card">
         <h3 onclick="toggleDescription('telegram')">Telegram Channel</h3>
-        <div id="telegram" class="project-description" style="display: none;">
+        <div id="telegram" class="project-description">
           <h4>Telegram Channel</h4>
           <p>
             The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.
@@ -453,14 +454,19 @@
       }
     });
 
-    // Document viewer
+    // Document viewer with password protection
     function viewDocument(url) {
-      const iframe = document.getElementById('documentIframe');
-      const downloadButton = document.getElementById('downloadButton');
-      iframe.src = url;
-      downloadButton.href = url;
-      downloadButton.setAttribute('download', '');
-      document.getElementById('documentModal').style.display = 'flex';
+      const password = prompt('Please enter the password to view the document:');
+      if (password === '39899082') {
+        const iframe = document.getElementById('documentIframe');
+        const downloadButton = document.getElementById('downloadButton');
+        iframe.src = url;
+        downloadButton.href = url;
+        downloadButton.setAttribute('download', '');
+        document.getElementById('documentModal').style.display = 'flex';
+      } else {
+        alert('Incorrect password. Please try again or contact the site administrator.');
+      }
     }
     function hideDocumentModal() {
       document.getElementById('documentModal').style.display = 'none';
@@ -493,6 +499,10 @@
     // Project description toggle
     function toggleDescription(id) {
       const description = document.getElementById(id);
+      if (!description) {
+        console.error(`No element found with id: ${id}`);
+        return;
+      }
       const isActive = description.classList.contains('active');
       document.querySelectorAll('.project-description').forEach(desc => {
         desc.classList.remove('active');
@@ -503,6 +513,7 @@
         description.classList.add('active');
         description.style.maxHeight = description.scrollHeight + 'px';
         description.style.opacity = '1';
+        console.log(`Toggled description for id: ${id}`);
       }
     }
   </script>
