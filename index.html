@@ -19,6 +19,12 @@
       --shadow: 0 4px 8px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
     }
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --white: #2c2c2c;
+      --text-color: #f0f2f5;
+      --shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
     body { 
       font-family: "Roboto", "Times New Roman", Times, serif; 
       margin: 0; 
@@ -26,6 +32,7 @@
       line-height: 1.6; 
       background: var(--bg-color);
       color: var(--text-color);
+      transition: var(--transition);
     }
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -57,19 +64,123 @@
       margin-top: 10px; 
       text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
+    .profile-container {
+      position: relative;
+      display: inline-block;
+    }
     header img.profile {
-      position: absolute;
-      top: 20px;
-      left: 20px;
       width: 70px;
       border-radius: 50%;
       border: 2px solid var(--white);
       box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
       transition: var(--transition);
       cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
     }
     header img.profile:hover {
       transform: scale(1.1);
+    }
+    .edit-profile {
+      position: absolute;
+      top: 0;
+      right: -10px;
+      background: var(--white);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      z-index: 10;
+    }
+    .edit-profile:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-color);
+      background: var(--white);
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .hamburger:hover {
+      color: var(--primary-color);
+    }
+    .hamburger-menu {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 200px;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.9rem;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .hamburger-menu.active {
+      max-height: 300px;
+    }
+    .hamburger-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .hamburger-menu ul li {
+      border-bottom: 1px solid #ddd;
+    }
+    .hamburger-menu ul li a {
+      display: block;
+      padding: 12px 15px;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+    .hamburger-menu ul li a:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+    .theme-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      background: none;
+      width: 100%;
+      text-align: left;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+    .theme-toggle:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+    .theme-toggle span {
+      flex: 1;
+    }
+    .theme-toggle input {
+      margin-left: 10px;
     }
     nav { 
       text-align: center; 
@@ -89,7 +200,7 @@
     }
     .dropdown {
       position: fixed;
-      top: 20px;
+      top: 70px;
       right: 20px;
       width: 160px;
       background: var(--text-color);
@@ -171,6 +282,11 @@
       border-radius: 8px;
       border: 2px solid var(--white);
       box-shadow: var(--shadow);
+      position: relative;
+    }
+    .modal-image .edit-profile {
+      top: 10px;
+      right: 10px;
     }
     .close-button {
       position: absolute;
@@ -415,16 +531,35 @@
       max-width: 900px;
       margin: 20px auto;
     }
+    #privacy-section, #settings-section {
+      display: none;
+      padding: 40px 20px;
+      background: var(--white);
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
       header .tagline { font-size: 1.1rem; }
       nav a { display: block; margin: 5px 0; }
-      .dropdown {
-        width: 140px;
+      .hamburger {
         top: 15px;
         right: 15px;
+        font-size: 1.2rem;
+        padding: 8px;
+      }
+      .hamburger-menu {
+        top: 60px;
+        right: 15px;
+        width: 180px;
+      }
+      .dropdown {
+        top: 60px;
+        right: 15px;
+        width: 140px;
       }
       .dropdown ul li a { text-align: center; padding: 10px; }
       .modal-content {
@@ -455,7 +590,22 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
+  <i class="fas fa-bars hamburger" onclick="toggleHamburger()" role="button" aria-label="Open Menu" tabindex="0"></i>
+  
+  <div class="hamburger-menu" id="hamburgerMenu" role="menu">
+    <ul>
+      <li><a href="#privacy-section" onclick="showSection('privacy')" role="menuitem">Privacy</a></li>
+      <li><a href="#settings-section" onclick="showSection('settings')" role="menuitem">Settings</a></li>
+      <li>
+        <label class="theme-toggle" role="menuitem">
+          <span>Dark Mode</span>
+          <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+        </label>
+      </li>
+    </ul>
+  </div>
+
   <div class="dropdown" role="menu" aria-label="My Documents">
     <h3 role="button" aria-expanded="false" tabindex="0">📂 My Docs</h3>
     <ul role="menu">
@@ -468,7 +618,12 @@
   </div>
 
   <header>
-    <img src="passport.png" alt="Profile photo of Collins Muthuri" class="profile" onclick="showModal()" role="button" aria-label="View profile image">
+    <div class="profile-container">
+      <img id="profileImg" src="passport.png" alt="Profile photo of Collins Muthuri" class="profile" onclick="showModal()" role="button" aria-label="View profile image">
+      <button class="edit-profile" onclick="editProfile()" aria-label="Edit Profile" title="Change Profile Picture">
+        <i class="fas fa-pencil-alt"></i>
+      </button>
+    </div>
     <h1>COLLINS MUTHURI</h1>
     <span class="tagline">SMALL MAN WITH BIG GOD</span>
     <p>Civil Engineer, AI Engineer, Trainer & Football Analyst</p>
@@ -477,7 +632,12 @@
   <div id="profileModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
     <div class="modal-content">
       <span class="close-button" onclick="hideModal()" aria-label="Close">&times;</span>
-      <img src="passport.png" alt="Profile photo of Collins Muthuri" class="modal-image">
+      <div class="profile-container">
+        <img id="modalProfileImg" src="passport.png" alt="Profile photo of Collins Muthuri" class="modal-image">
+        <button class="edit-profile" onclick="editProfile()" aria-label="Edit Profile" title="Change Profile Picture">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -505,6 +665,16 @@
   </nav>
 
   <main>
+    <section id="privacy-section">
+      <h2>Privacy Policy</h2>
+      <p>This is a placeholder for the Privacy Policy. In a real implementation, this would contain detailed privacy information.</p>
+    </section>
+
+    <section id="settings-section">
+      <h2>Settings</h2>
+      <p>This is a placeholder for Settings. Here you can manage user preferences, notifications, etc.</p>
+    </section>
+
     <section id="about">
       <h2>About Me</h2>
       <p>
@@ -594,7 +764,82 @@
     <p>&copy; <script>document.write(new Date().getFullYear());</script> COLLINS MUTHURI | A Civil Engineer, AI Engineer and Trainer</p>
   </footer>
 
+  <input type="file" id="profileFileInput" accept="image/*" style="display: none;" onchange="updateProfileImage(event)">
+
   <script>
+    // Load theme on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+      document.getElementById('themeToggle').checked = savedTheme === 'dark';
+    });
+
+    // Hamburger menu toggle
+    function toggleHamburger() {
+      const menu = document.getElementById('hamburgerMenu');
+      menu.classList.toggle('active');
+    }
+    document.querySelector('.hamburger').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHamburger();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      const hamburger = document.querySelector('.hamburger');
+      const menu = document.getElementById('hamburgerMenu');
+      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('active');
+      }
+    });
+
+    // Show sections for Privacy/Settings
+    function showSection(type) {
+      document.querySelectorAll('#privacy-section, #settings-section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(type + '-section').style.display = 'block';
+      document.querySelector('.hamburger-menu').classList.remove('active');
+      document.querySelector('nav a[href="#' + type + '-section"]').click(); // Smooth scroll
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    // Profile edit
+    function editProfile() {
+      document.getElementById('profileFileInput').click();
+    }
+
+    function updateProfileImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const profileImg = document.getElementById('profileImg');
+          const modalImg = document.getElementById('modalProfileImg');
+          profileImg.src = e.target.result;
+          modalImg.src = e.target.result;
+          // Optionally save to localStorage as base64 for persistence
+          localStorage.setItem('profileImage', e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Load profile image from localStorage on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedImage = localStorage.getItem('profileImage');
+      if (savedImage) {
+        document.getElementById('profileImg').src = savedImage;
+        document.getElementById('modalProfileImg').src = savedImage;
+      }
+    });
+
     // Dropdown toggle with accessibility
     const dropdown = document.querySelector('.dropdown');
     const dropdownContent = document.querySelector('.dropdown ul');
@@ -687,8 +932,6 @@
         hideDocumentModal();
       }
     });
-
-    // Removed file existence check as it may not work for local files; assume files are present
 
     // Project description toggle with accessibility
     function toggleDescription(id) {
