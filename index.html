@@ -10,14 +10,52 @@
     header h1 { margin: 0; font-size: 2.5rem; }
     header p { font-size: 1.2rem; margin-top: 10px; }
     header img.profile { position: absolute; top: 20px; left: 20px; width: 100px; border-radius: 50%; border: 3px solid #fff; }
+
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
     nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; }
+
+    /* Dropdown Menu on Right */
+    .dropdown {
+      position: fixed;
+      top: 100px;
+      right: 0;
+      width: 200px;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 8px 0 0 8px;
+      overflow: hidden;
+    }
+    .dropdown h3 {
+      background: #1a242f;
+      margin: 0;
+      padding: 15px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .dropdown ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+    }
+    .dropdown ul li {
+      border-bottom: 1px solid #444;
+    }
+    .dropdown ul li a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .dropdown ul li a:hover {
+      background: #0073e6;
+    }
+
     section { padding: 40px 20px; max-width: 900px; margin: auto; }
     h2 { color: #2c3e50; margin-bottom: 20px; }
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); }
-    .card h3 { margin-top: 0; }
+
     footer { text-align: center; background: #2c3e50; color: #fff; padding: 20px; margin-top: 40px; }
+
     a.button { display: inline-block; margin-top: 10px; padding: 10px 15px; background: #2c3e50; color: #fff; border-radius: 5px; text-decoration: none; }
     a.button:hover { background: #1a242f; }
   </style>
@@ -35,6 +73,24 @@
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </nav>
+
+  <!-- Dropdown for documents (RIGHT SIDE) -->
+  <div class="dropdown">
+    <h3 onclick="toggleMenu()">📂 My Documents</h3>
+    <ul id="menu">
+      <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
+      <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
+      <li><a href="docs/kcpe.pdf" target="_blank">KCPE Certificate</a></li>
+      <li><a href="docs/ksce.pdf" target="_blank">KCSE Certificate</a></li>
+      <li><a href="docs/degree.pdf" target="_blank">Degree Certificate</a></li>
+      <li><a href="docs/leaving_cert.pdf" target="_blank">Leaving Certificate</a></li>
+      <li><a href="docs/cv.pdf" target="_blank">Curriculum Vitae (CV)</a></li>
+      <li><a href="docs/transcript1.pdf" target="_blank">Transcript 1</a></li>
+      <li><a href="docs/transcript2.pdf" target="_blank">Transcript 2</a></li>
+      <li><a href="docs/transcript3.pdf" target="_blank">Transcript 3</a></li>
+      <li><a href="docs/transcript4.pdf" target="_blank">Transcript 4</a></li>
+    </ul>
+  </div>
 
   <section id="about">
     <h2>About Me</h2>
@@ -72,6 +128,27 @@
   <footer>
     <p>&copy; 2025 Collins Muthuri | Civil Engineering Trainer</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "block") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "block";
+      }
+    }
+
+    // Auto-collapse menu after clicking a document link
+    document.addEventListener("DOMContentLoaded", function() {
+      var links = document.querySelectorAll("#menu a");
+      links.forEach(function(link) {
+        link.addEventListener("click", function() {
+          document.getElementById("menu").style.display = "none";
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
