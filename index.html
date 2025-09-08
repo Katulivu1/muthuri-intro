@@ -218,6 +218,25 @@
       box-shadow: var(--shadow);
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    [data-theme="dark"] .dropdown {
+      background: var(--text-color);
+      color: #000;
+    }
+    [data-theme="dark"] .dropdown h3 {
+      color: #fff;
+      background: linear-gradient(135deg, #1a242f, #16202a);
+    }
+    [data-theme="dark"] .dropdown ul li {
+      border-bottom: 1px solid #444;
+    }
+    [data-theme="dark"] .dropdown ul li a {
+      color: #000;
+    }
+    [data-theme="dark"] .dropdown ul li a:hover {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      transform: translateX(5px);
+    }
     .dropdown.hidden {
       transform: translateX(-100%);
       opacity: 0;
@@ -636,7 +655,7 @@
       <li><a href="#settings-section" onclick="showSection('settings')" role="menuitem">Settings</a></li>
       <li>
         <label class="theme-toggle" role="menuitem">
-          <span>Dark Mode</span>
+          <span id="themeLabel">Dark Mode</span>
           <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
         </label>
       </li>
@@ -808,7 +827,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.body.setAttribute('data-theme', savedTheme);
-      document.getElementById('themeToggle').checked = savedTheme === 'dark';
+      const themeToggle = document.getElementById('themeToggle');
+      const themeLabel = document.getElementById('themeLabel');
+      themeToggle.checked = savedTheme === 'dark';
+      themeLabel.textContent = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
     });
 
     // Hamburger menu toggle
@@ -861,10 +883,14 @@
     // Theme toggle
     function toggleTheme() {
       const body = document.body;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeLabel = document.getElementById('themeLabel');
       const isDark = body.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      themeToggle.checked = newTheme === 'dark';
+      themeLabel.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
     }
 
     // Profile edit
