@@ -6,7 +6,14 @@
   <title>Collins Muthuri - Civil Engineering Trainer</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { background: #0073e6; color: #fff; padding: 60px 20px; text-align: center; position: relative; }
+    
+    header {
+      background: #0073e6;
+      color: #fff;
+      padding: 80px 20px 60px 20px; /* extra top padding so dropdown doesn't overlap */
+      text-align: center;
+      position: relative;
+    }
     header h1 { margin: 0; font-size: 2.5rem; }
     header p { font-size: 1.2rem; margin-top: 10px; }
     header img.profile {
@@ -21,17 +28,18 @@
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
     nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; }
 
-    /* Dropdown Menu on Right */
+    /* Dropdown Menu on Right, top-most */
     .dropdown {
       position: fixed;
-      top: 100px;
+      top: 0; /* top-most */
       right: 0;
-      width: 150px; /* smaller */
+      width: 150px; /* smaller width */
       background: #2c3e50;
       color: #fff;
-      border-radius: 8px 0 0 8px;
+      border-radius: 0 0 0 8px; /* rounded bottom-left corner */
       overflow: hidden;
       font-size: 0.9rem; /* smaller text */
+      z-index: 1000; /* stay above header */
     }
     .dropdown h3 {
       background: #1a242f;
@@ -82,7 +90,7 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Dropdown for documents (RIGHT SIDE) -->
+  <!-- Dropdown for documents (TOP-RIGHT) -->
   <div class="dropdown">
     <h3 onclick="toggleMenu()">📂 My Docs</h3>
     <ul id="menu">
