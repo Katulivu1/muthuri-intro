@@ -4,23 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
+  <meta name="description" content="Collins Muthuri - Civil Engineer and Trainer with expertise in structural design, construction projects, and technical training.">
   <style>
     body { 
       font-family: "Times New Roman", Times, serif; 
       margin: 0; 
       padding: 0; 
       line-height: 1.6; 
+      background: #f0f2f5;
     }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
     
+    /* HEADER */
     header {
-      background: #0073e6;
+      background: linear-gradient(135deg, #0073e6, #005bb5);
       color: #fff;
       padding: 80px 20px 60px 20px;
       text-align: center;
       position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; }
-    header p { font-size: 1.2rem; margin-top: 10px; }
+    header h1 { 
+      margin: 0; 
+      font-size: 2.5rem; 
+      text-transform: uppercase; 
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    header p { 
+      font-size: 1.2rem; 
+      margin-top: 10px; 
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
     header img.profile {
       position: absolute;
       top: 20px;
@@ -28,42 +44,46 @@
       width: 70px;
       border-radius: 50%;
       border: 2px solid #fff;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
     }
+    header img.profile:hover { transform: scale(1.1); }
 
+    /* NAV */
     nav { text-align: center; padding: 10px; background: #f4f4f4; }
-    nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; }
+    nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
+    nav a:hover { color: #0073e6; }
 
-    /* Dropdown Menu on Right, top-most */
+    /* DROPDOWN */
     .dropdown {
       position: fixed;
       top: 0;
       right: 0;
-      width: 150px;
+      width: 180px;
       background: #2c3e50;
       color: #fff;
       border-radius: 0 0 0 8px;
       overflow: hidden;
       font-size: 0.9rem;
       z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
     .dropdown h3 {
-      background: #1a242f;
+      background: linear-gradient(135deg, #1a242f, #16202a);
       margin: 0;
       padding: 15px;
       cursor: pointer;
       text-align: center;
+      transition: background 0.3s;
     }
+    .dropdown h3:hover { background: linear-gradient(135deg, #0073e6, #005bb5); }
     .dropdown ul {
       list-style: none;
       padding: 0;
       margin: 0;
       max-height: 0; 
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
-    .dropdown:hover ul {
-      max-height: 1000px; 
-      transition: max-height 0.5s ease-in;
+      transition: max-height 0.4s ease-out;
     }
     .dropdown ul li {
       border-bottom: 1px solid #444;
@@ -73,20 +93,89 @@
       padding: 10px;
       text-decoration: none;
       color: #fff;
+      transition: background 0.3s, transform 0.3s;
     }
     .dropdown ul li a:hover {
-      background: #0073e6;
+      background: linear-gradient(135deg, #0073e6, #005bb5);
+      transform: translateX(5px);
     }
 
-    section { padding: 40px 20px; max-width: 900px; margin: auto; }
+    /* SECTIONS */
+    section { 
+      padding: 40px 20px; 
+      max-width: 1000px; 
+      margin: auto; 
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
     h2 { color: #2c3e50; margin-bottom: 20px; }
 
-    footer { text-align: center; background: #2c3e50; color: #fff; padding: 20px; margin-top: 40px; }
+    /* PROJECT CARDS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .card h3 { margin-top: 0; }
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
 
-    a.button { display: inline-block; margin-top: 10px; padding: 10px 15px; background: #2c3e50; color: #fff; border-radius: 5px; text-decoration: none; }
-    a.button:hover { background: #1a242f; }
+    a.button { 
+      display: inline-block; 
+      margin-top: 10px; 
+      padding: 10px 15px; 
+      background: #2c3e50; 
+      color: #fff; 
+      border-radius: 5px; 
+      text-decoration: none; 
+      transition: background 0.3s, transform 0.3s;
+    }
+    a.button:hover { 
+      background: #0073e6; 
+      transform: scale(1.05);
+    }
 
-    /* MOBILE RESPONSIVE */
+    /* CONTACT */
+    .contact-links a {
+      display: inline-block;
+      margin: 8px 10px;
+      padding: 10px 15px;
+      background: #0073e6;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .contact-links a:hover {
+      background: #005bb5;
+      transform: scale(1.05);
+    }
+
+    /* FOOTER */
+    footer { 
+      text-align: center; 
+      background: #2c3e50; 
+      color: #fff; 
+      padding: 20px; 
+      margin-top: 40px; 
+    }
+    footer nav a { color: #fff; margin: 0 10px; }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
       header h1 { font-size: 2rem; }
@@ -96,9 +185,7 @@
 
       .dropdown {
         width: 100%; 
-        border-radius: 0 0 0 0;
-        top: 0;
-        right: 0;
+        border-radius: 0;
       }
       .dropdown ul li a { text-align: center; padding: 12px; }
     }
@@ -107,7 +194,7 @@
 <body>
 
   <header>
-    <img src="passport.png" alt="COLLINS MUTHURI" class="profile">
+    <img src="passport.png" alt="Passport photo of Collins Muthuri" class="profile">
     <h1>COLLINS MUTHURI</h1>
     <p>A Civil Engineer and Trainer</p>
   </header>
@@ -118,7 +205,7 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Dropdown for documents (TOP-RIGHT, mobile-friendly) -->
+  <!-- Dropdown for documents -->
   <div class="dropdown">
     <h3>📂 My Docs</h3>
     <ul>
@@ -150,11 +237,13 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
+        <div class="card-icon">⚽</div>
         <h3>Football Game Website</h3>
         <p>A simple website project to display football games, match details, and updates for fans.</p>
         <a href="#" class="button">View Project</a>
       </div>
       <div class="card">
+        <div class="card-icon">📱</div>
         <h3>Telegram Channel</h3>
         <p>The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.</p>
         <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
@@ -164,14 +253,36 @@
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:muthuricollins43@gmail.com">muthuricollins43@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/254706415082" target="_blank">+254706415082</a></p>
-    <p>X (Twitter): <a href="https://x.com/futbol_afc" target="_blank">@futbol_afc</a></p>
+    <div class="contact-links">
+      <a href="mailto:muthuricollins43@gmail.com">📧 Email</a>
+      <a href="https://wa.me/254706415082" target="_blank">💬 WhatsApp</a>
+      <a href="https://x.com/futbol_afc" target="_blank">🐦 Twitter</a>
+    </div>
   </section>
 
   <footer>
     <p>&copy; 2025 COLLINS MUTHURI | A Civil Engineer and Trainer</p>
+    <nav>
+      <a href="#about">About</a> | 
+      <a href="#projects">Projects</a> | 
+      <a href="#contact">Contact</a>
+    </nav>
   </footer>
+
+  <!-- Dropdown toggle script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.querySelector(".dropdown h3");
+      const menu = document.querySelector(".dropdown ul");
+      toggle.addEventListener("click", () => {
+        if (menu.style.maxHeight) {
+          menu.style.maxHeight = null;
+        } else {
+          menu.style.maxHeight = menu.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
