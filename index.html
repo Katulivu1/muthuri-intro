@@ -10,7 +10,7 @@
     header {
       background: #0073e6;
       color: #fff;
-      padding: 80px 20px 60px 20px; /* extra top padding so dropdown doesn't overlap */
+      padding: 80px 20px 60px 20px;
       text-align: center;
       position: relative;
     }
@@ -20,7 +20,7 @@
       position: absolute;
       top: 20px;
       left: 20px;
-      width: 70px;  /* smaller */
+      width: 70px;
       border-radius: 50%;
       border: 2px solid #fff;
     }
@@ -31,15 +31,15 @@
     /* Dropdown Menu on Right, top-most */
     .dropdown {
       position: fixed;
-      top: 0; /* top-most */
+      top: 0;
       right: 0;
-      width: 150px; /* smaller width */
+      width: 150px;
       background: #2c3e50;
       color: #fff;
-      border-radius: 0 0 0 8px; /* rounded bottom-left corner */
+      border-radius: 0 0 0 8px;
       overflow: hidden;
-      font-size: 0.9rem; /* smaller text */
-      z-index: 1000; /* stay above header */
+      font-size: 0.9rem;
+      z-index: 1000;
     }
     .dropdown h3 {
       background: #1a242f;
@@ -52,7 +52,13 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      display: none;
+      max-height: 0; /* collapsed */
+      overflow: hidden;
+      transition: max-height 0.3s ease-out; /* smooth animation */
+    }
+    .dropdown ul.show {
+      max-height: 1000px; /* expand large enough to show all items */
+      transition: max-height 0.5s ease-in;
     }
     .dropdown ul li {
       border-bottom: 1px solid #444;
@@ -148,11 +154,7 @@
   <script>
     function toggleMenu() {
       var menu = document.getElementById("menu");
-      if (menu.style.display === "block") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "block";
-      }
+      menu.classList.toggle("show");
     }
 
     // Auto-collapse menu after clicking a document link
@@ -160,7 +162,7 @@
       var links = document.querySelectorAll("#menu a");
       links.forEach(function(link) {
         link.addEventListener("click", function() {
-          document.getElementById("menu").style.display = "none";
+          document.getElementById("menu").classList.remove("show");
         });
       });
     });
