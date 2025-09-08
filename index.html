@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collins Muthuri - Civil Engineering Trainer</title>
+  <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    body { 
+      font-family: "Times New Roman", Times, serif; 
+      margin: 0; 
+      padding: 0; 
+      line-height: 1.6; 
+    }
     
     header {
       background: #0073e6;
@@ -14,7 +19,7 @@
       text-align: center;
       position: relative;
     }
-    header h1 { margin: 0; font-size: 2.5rem; }
+    header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; }
     header p { font-size: 1.2rem; margin-top: 10px; }
     header img.profile {
       position: absolute;
@@ -52,12 +57,12 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      max-height: 0; /* collapsed */
+      max-height: 0; 
       overflow: hidden;
-      transition: max-height 0.3s ease-out; /* smooth animation */
+      transition: max-height 0.3s ease-out;
     }
-    .dropdown ul.show {
-      max-height: 1000px; /* expand large enough to show all items */
+    .dropdown:hover ul {
+      max-height: 1000px; 
       transition: max-height 0.5s ease-in;
     }
     .dropdown ul li {
@@ -80,14 +85,31 @@
 
     a.button { display: inline-block; margin-top: 10px; padding: 10px 15px; background: #2c3e50; color: #fff; border-radius: 5px; text-decoration: none; }
     a.button:hover { background: #1a242f; }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      header img.profile { width: 50px; top: 15px; left: 15px; }
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+
+      nav a { display: block; margin: 5px 0; }
+
+      .dropdown {
+        width: 100%; 
+        border-radius: 0 0 0 0;
+        top: 0;
+        right: 0;
+      }
+      .dropdown ul li a { text-align: center; padding: 12px; }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="passport.png" alt="Collins Muthuri" class="profile">
-    <h1>Collins Muthuri</h1>
-    <p>Civil Engineering Trainer</p>
+    <img src="passport.png" alt="COLLINS MUTHURI" class="profile">
+    <h1>COLLINS MUTHURI</h1>
+    <p>A Civil Engineer and Trainer</p>
   </header>
 
   <nav>
@@ -96,10 +118,10 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Dropdown for documents (TOP-RIGHT) -->
+  <!-- Dropdown for documents (TOP-RIGHT, mobile-friendly) -->
   <div class="dropdown">
-    <h3 onclick="toggleMenu()">📂 My Docs</h3>
-    <ul id="menu">
+    <h3>📂 My Docs</h3>
+    <ul>
       <li><a href="docs/birth_certificate.pdf" target="_blank">Birth Certificate</a></li>
       <li><a href="docs/national_id.pdf" target="_blank">National ID</a></li>
       <li><a href="docs/kcpe.pdf" target="_blank">KCPE Certificate</a></li>
@@ -117,7 +139,7 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I am a passionate Civil Engineering Trainer with experience in teaching, building construction,
+      I am a passionate Civil Engineer and Trainer with experience in teaching, building construction,
       and technical training. I enjoy guiding students and professionals in structural design and
       practical engineering applications. Always eager to explore new projects that combine innovation
       and real-world problem-solving.
@@ -148,25 +170,8 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 Collins Muthuri | Civil Engineering Trainer</p>
+    <p>&copy; 2025 COLLINS MUTHURI | A Civil Engineer and Trainer</p>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      var menu = document.getElementById("menu");
-      menu.classList.toggle("show");
-    }
-
-    // Auto-collapse menu after clicking a document link
-    document.addEventListener("DOMContentLoaded", function() {
-      var links = document.querySelectorAll("#menu a");
-      links.forEach(function(link) {
-        link.addEventListener("click", function() {
-          document.getElementById("menu").classList.remove("show");
-        });
-      });
-    });
-  </script>
 
 </body>
 </html>
