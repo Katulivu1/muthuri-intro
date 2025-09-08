@@ -3,24 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COLLINS MUTHURI - A Civil Engineer and Trainer</title>
+  <meta name="description" content="Collins Muthuri - Civil Engineer, AI Engineer, Trainer, and Football Analyst. Explore projects in machine learning and building design.">
+  <meta name="keywords" content="civil engineering, AI, machine learning, football predictions, training">
+  <title>Collins Muthuri - Civil Engineer, AI Engineer & Trainer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Georgia:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #0073e6;
+      --secondary-color: #005bb5;
+      --accent-color: #2ecc71;
+      --text-color: #2c3e50;
+      --bg-color: #f0f2f5;
+      --white: #fff;
+      --shadow: 0 4px 8px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
     body { 
-      font-family: "Times New Roman", Times, serif; 
+      font-family: "Roboto", "Times New Roman", Times, serif; 
       margin: 0; 
       padding: 0; 
       line-height: 1.6; 
-      background: #f0f2f5;
+      background: var(--bg-color);
+      color: var(--text-color);
     }
     header {
-      background: linear-gradient(135deg, #0073e6, #005bb5);
-      color: #fff;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
       padding: 80px 20px 60px 20px;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow);
     }
     header h1 { 
       margin: 0; 
@@ -33,7 +46,7 @@
       font-family: 'Georgia', serif;
       font-size: 1.3rem;
       font-weight: bold;
-      color: #2ecc71;
+      color: var(--accent-color);
       text-decoration: underline;
       text-transform: uppercase;
       margin: 5px 0 10px;
@@ -50,29 +63,42 @@
       left: 20px;
       width: 70px;
       border-radius: 50%;
-      border: 2px solid #fff;
+      border: 2px solid var(--white);
       box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
+      transition: var(--transition);
       cursor: pointer;
     }
     header img.profile:hover {
       transform: scale(1.1);
     }
-    nav { text-align: center; padding: 10px; background: #f4f4f4; }
-    nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; transition: color 0.3s; }
-    nav a:hover { color: #0073e6; }
+    nav { 
+      text-align: center; 
+      padding: 10px; 
+      background: var(--white); 
+      box-shadow: var(--shadow);
+    }
+    nav a { 
+      margin: 0 15px; 
+      text-decoration: none; 
+      color: var(--text-color); 
+      font-weight: bold; 
+      transition: var(--transition); 
+    }
+    nav a:hover { 
+      color: var(--primary-color); 
+    }
     .dropdown {
       position: fixed;
       top: 20px;
       right: 20px;
       width: 160px;
-      background: #2c3e50;
-      color: #fff;
+      background: var(--text-color);
+      color: var(--white);
       border-radius: 8px;
       overflow: hidden;
       font-size: 0.9rem;
       z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow);
     }
     .dropdown h3 {
       background: linear-gradient(135deg, #1a242f, #16202a);
@@ -81,10 +107,10 @@
       cursor: pointer;
       text-align: center;
       font-size: 1rem;
-      transition: background 0.3s;
+      transition: var(--transition);
     }
     .dropdown h3:hover {
-      background: linear-gradient(135deg, #0073e6, #005bb5);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     }
     .dropdown ul {
       list-style: none;
@@ -92,7 +118,7 @@
       margin: 0;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: var(--transition);
     }
     .dropdown.active ul {
       max-height: 500px;
@@ -104,12 +130,12 @@
       display: block;
       padding: 8px 10px;
       text-decoration: none;
-      color: #fff;
+      color: var(--white);
       font-size: 0.85rem;
-      transition: background 0.3s, transform 0.3s;
+      transition: var(--transition);
     }
     .dropdown ul li a:hover {
-      background: linear-gradient(135deg, #0073e6, #005bb5);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       transform: translateX(5px);
     }
     .modal {
@@ -128,7 +154,7 @@
       width: 80%;
       max-width: 600px;
       max-height: 80vh;
-      background: #fff;
+      background: var(--white);
       padding: 15px;
       border-radius: 8px;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -143,49 +169,53 @@
       height: 400px;
       object-fit: cover;
       border-radius: 8px;
-      border: 2px solid #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--white);
+      box-shadow: var(--shadow);
     }
     .close-button {
       position: absolute;
       top: -15px;
       right: -15px;
       font-size: 1.5rem;
-      color: #fff;
-      background: #2c3e50;
+      color: var(--white);
+      background: var(--text-color);
       border-radius: 50%;
       width: 30px;
       height: 30px;
       text-align: center;
       line-height: 30px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: var(--transition);
     }
     .close-button:hover {
-      background: #0073e6;
+      background: var(--primary-color);
     }
     #documentIframe {
       width: 100%;
       height: 60vh;
       border: none;
     }
-    section { 
-      padding: 40px 20px; 
+    main { 
       max-width: 900px; 
       margin: auto; 
-      background: #fff;
+    }
+    section { 
+      padding: 40px 20px; 
+      background: var(--white);
       margin-bottom: 20px;
       border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
     }
-    h2 { color: #2c3e50; margin-bottom: 20px; }
+    h2 { 
+      color: var(--text-color); 
+      margin-bottom: 20px; 
+      font-family: 'Georgia', serif;
+    }
     #contact {
       padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-      background: linear-gradient(135deg, #ffffff, #f0f4f8);
+      background: linear-gradient(135deg, var(--white), #f0f4f8);
       border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       text-align: center;
     }
     #contact .contact-box {
@@ -193,9 +223,9 @@
       padding: 20px;
       border: 4px solid transparent;
       border-radius: 12px;
-      background: linear-gradient(135deg, #f0f4f8, #ffffff) padding-box,
-                  linear-gradient(45deg, #2ecc71, #3498db) border-box;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #f0f4f8, var(--white)) padding-box,
+                  linear-gradient(45deg, var(--accent-color), var(--primary-color)) border-box;
+      box-shadow: var(--shadow);
     }
     #contact .contact-box::before {
       content: '✿';
@@ -204,13 +234,13 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 2rem;
-      color: #2ecc71;
-      background: #ffffff;
+      color: var(--accent-color);
+      background: var(--white);
       padding: 0 10px;
     }
     #contact h2 {
-      color: #2c3e50;
-      font-family: 'Gabriola', 'Georgia', serif;
+      color: var(--text-color);
+      font-family: 'Georgia', serif;
       font-size: 2rem;
       margin-bottom: 30px;
       text-transform: uppercase;
@@ -224,28 +254,28 @@
     }
     .socials a {
       font-size: 2rem;
-      color: #2c3e50;
-      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+      color: var(--text-color);
+      transition: var(--transition);
       padding: 10px;
       border-radius: 50%;
     }
     .socials a:hover {
-      color: #fff;
-      background: #0073e6;
+      color: var(--white);
+      background: var(--primary-color);
       transform: scale(1.2) rotate(5deg);
     }
     .x-icon {
-      font-family: 'Roboto', 'Times New Roman', Times, serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: bold;
       font-size: 1.8rem;
-      color: #2c3e50;
-      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+      color: var(--text-color);
+      transition: var(--transition);
       padding: 10px;
       border-radius: 50%;
     }
     .x-icon:hover {
-      color: #fff;
-      background: #0073e6;
+      color: var(--white);
+      background: var(--primary-color);
       transform: rotate(15deg) scale(1.2);
     }
     .projects .card {
@@ -253,7 +283,7 @@
       padding: 15px;
       border-radius: 6px;
       background: #f9f9f9;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: var(--transition);
       cursor: pointer;
     }
     .projects .card:hover {
@@ -262,19 +292,18 @@
     }
     .projects .card h3 {
       margin: 0;
-      color: #2c3e50;
-      font-family: 'Roboto', 'Times New Roman', Times, serif;
+      color: var(--text-color);
       font-size: 1.5rem;
-      transition: color 0.3s;
+      transition: var(--transition);
     }
     .projects .card h3:hover {
-      color: #0073e6;
+      color: var(--primary-color);
     }
     .project-description {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      transition: var(--transition);
     }
     .project-description.active {
       max-height: 600px;
@@ -283,7 +312,7 @@
     }
     .project-description h4 {
       margin: 0 0 10px;
-      color: #2c3e50;
+      color: var(--text-color);
       font-size: 1.2rem;
     }
     .project-description p {
@@ -297,13 +326,13 @@
       border-radius: 6px;
       margin: 10px 0;
       display: block;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      cursor: pointer; /* Indicate clickability */
+      box-shadow: var(--shadow);
+      cursor: pointer;
     }
     .project-divider {
       border: 0;
       height: 4px;
-      background: #2c3e50;
+      background: var(--text-color);
       margin: 20px 0;
       border-radius: 2px;
     }
@@ -311,17 +340,71 @@
       display: inline-block; 
       margin-top: 10px; 
       padding: 10px 15px; 
-      background: #2c3e50; 
-      color: #fff; 
+      background: var(--text-color); 
+      color: var(--white); 
       border-radius: 5px; 
       text-decoration: none; 
-      transition: background 0.3s, transform 0.3s;
+      transition: var(--transition);
     }
     a.button:hover { 
-      background: #0073e6; 
+      background: var(--primary-color); 
       transform: scale(1.05);
     }
-    footer { text-align: center; background: #2c3e50; color: #fff; padding: 20px; margin-top: 40px; }
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .skills-list li {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .skills-list li:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+    .education-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      padding: 10px;
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .contact-form button:hover {
+      background: var(--secondary-color);
+    }
+    footer { 
+      text-align: center; 
+      background: var(--text-color); 
+      color: var(--white); 
+      padding: 20px; 
+      margin-top: 40px; 
+    }
     .quote {
       text-align: center;
       margin: 20px 0;
@@ -329,6 +412,8 @@
       font-size: 1.2rem;
       font-family: "Georgia", serif;
       color: #444;
+      max-width: 900px;
+      margin: 20px auto;
     }
     @media (max-width: 768px) {
       header img.profile { width: 50px; top: 15px; left: 15px; }
@@ -355,146 +440,202 @@
       #contact h2 { font-size: 1.5rem; }
       #contact .contact-box { padding: 15px; }
       #contact .contact-box::before { font-size: 1.5rem; top: -10px; }
-      .socials { gap: 15px; }
+      .socials { gap: 15px; flex-wrap: wrap; }
       .socials a { font-size: 1.8rem; }
       .x-icon { font-size: 1.6rem; }
       .projects .card h3 { font-size: 1.3rem; }
       .project-description h4 { font-size: 1.1rem; }
       .project-image { max-width: 200px; }
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+      .contact-form {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="dropdown">
-    <h3>📂 My Docs</h3>
-    <ul>
-      <li><a href="#" onclick="viewDocument('docs/birth_certificate.pdf')">Birth Certificate</a></li>
-      <li><a href="#" onclick="viewDocument('docs/kcpe.pdf')">KCPE Certificate</a></li>
-      <li><a href="#" onclick="viewDocument('docs/leaving_cert.pdf')">Leaving Certificate</a></li>
-      <li><a href="#" onclick="viewDocument('docs/cv.pdf')">Curriculum Vitae (CV)</a></li>
-      <li><a href="#" onclick="viewDocument('docs/transcripts.pdf')">Transcripts</a></li>
+  <div class="dropdown" role="menu" aria-label="My Documents">
+    <h3 role="button" aria-expanded="false" tabindex="0">📂 My Docs</h3>
+    <ul role="menu">
+      <li><a href="#" onclick="viewDocument('docs/birth_certificate.pdf')" role="menuitem">Birth Certificate</a></li>
+      <li><a href="#" onclick="viewDocument('docs/kcpe.pdf')" role="menuitem">KCPE Certificate</a></li>
+      <li><a href="#" onclick="viewDocument('docs/leaving_cert.pdf')" role="menuitem">Leaving Certificate</a></li>
+      <li><a href="#" onclick="viewDocument('docs/cv.pdf')" role="menuitem">Curriculum Vitae (CV)</a></li>
+      <li><a href="#" onclick="viewDocument('docs/transcripts.pdf')" role="menuitem">Transcripts</a></li>
     </ul>
   </div>
 
   <header>
-    <img src="passport.png" alt="COLLINS MUTHURI" class="profile" onclick="showModal()">
+    <img src="passport.png" alt="Profile photo of Collins Muthuri" class="profile" onclick="showModal()" role="button" aria-label="View profile image">
     <h1>COLLINS MUTHURI</h1>
     <span class="tagline">SMALL MAN WITH BIG GOD</span>
-    <p>A Civil Engineer and Trainer</p>
+    <p>Civil Engineer, AI Engineer, Trainer & Football Analyst</p>
   </header>
 
-  <div id="profileModal" class="modal">
+  <div id="profileModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
     <div class="modal-content">
-      <span class="close-button" onclick="hideModal()">&times;</span>
-      <img src="passport.png" alt="COLLINS MUTHURI" class="modal-image">
+      <span class="close-button" onclick="hideModal()" aria-label="Close">&times;</span>
+      <img src="passport.png" alt="Profile photo of Collins Muthuri" class="modal-image">
     </div>
   </div>
 
-  <div id="telegramModal" class="modal">
+  <div id="telegramModal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button" onclick="hideTelegramModal()">&times;</span>
-      <img src="images/telegram.png" alt="Telegram Channel" class="modal-image">
+      <span class="close-button" onclick="hideTelegramModal()" aria-label="Close">&times;</span>
+      <img src="images/telegram.png" alt="Telegram Channel Logo" class="modal-image">
     </div>
   </div>
 
-  <div id="documentModal" class="modal">
+  <div id="documentModal" class="modal" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button" onclick="hideDocumentModal()">&times;</span>
-      <iframe id="documentIframe" src="" style="width: 100%; height: 60vh; border: none;"></iframe>
-      <a id="downloadButton" href="#" class="button" style="display: block; text-align: center; margin: 10px auto;">Download Document</a>
+      <span class="close-button" onclick="hideDocumentModal()" aria-label="Close">&times;</span>
+      <iframe id="documentIframe" title="Document Viewer" src="" style="width: 100%; height: 60vh; border: none;"></iframe>
+      <a id="downloadButton" href="#" class="button" style="display: block; text-align: center; margin: 10px auto;" download>Download Document</a>
     </div>
   </div>
 
-  <nav>
+  <nav role="navigation">
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate Civil Engineer and Trainer with experience in teaching, building construction,
-      and technical training. I enjoy guiding students and professionals in structural design and
-      practical engineering applications. Always eager to explore new projects that combine innovation
-      and real-world problem-solving.
-    </p>
-  </section>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate Civil Engineer and AI Engineer at Dedan Kimathi University of Technology, with experience in teaching, building construction,
+        technical training, and machine learning applications. As a dedicated trainer, I guide students and professionals in structural design, practical engineering,
+        and innovative AI solutions for real-world problems. I also enjoy analyzing football matches and providing predictions as a bet analyst. Always eager to explore new projects that combine innovation, engineering, and sports analytics.
+      </p>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3 onclick="toggleDescription('fire-resistance')">Predicting Fire Resistance in Buildings Using Machine Learning</h3>
-        <div id="fire-resistance" class="project-description">
-          <h4>Predicting Fire Resistance in Buildings Using Machine Learning</h4>
-          <p>By Patrick and Collins</p>
-          <p>
-            This project uses machine learning to predict fire resistance of buildings based on structural and material properties. It analyzes data to estimate how long structures can withstand fire, aiding engineers and architects in designing safer buildings.
-          </p>
-          <a href="https://building-fire-resistance.onrender.com/" target="_blank" class="button">View Project</a>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills-list" role="list">
+        <li>Structural Design</li>
+        <li>Machine Learning</li>
+        <li>Building Construction</li>
+        <li>Technical Training</li>
+        <li>Python Programming</li>
+        <li>Football Analysis</li>
+        <li>Data Analysis</li>
+        <li>Project Management</li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>Bachelor of Science in Civil Engineering</h3>
+        <p>Dedan Kimathi University of Technology, Nyeri, Kenya</p>
+        <p>Department of Civil Engineering</p>
+      </div>
+      <!-- Add more if available -->
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="card" role="button" tabindex="0" aria-expanded="false">
+          <h3 onclick="toggleDescription('fire-resistance')" onkeypress="toggleDescription('fire-resistance')">Predicting Fire Resistance in Buildings Using Machine Learning</h3>
+          <div id="fire-resistance" class="project-description">
+            <h4>Predicting Fire Resistance in Buildings Using Machine Learning</h4>
+            <p>By Patrick and Collins</p>
+            <p>
+              This project uses machine learning to predict fire resistance of buildings based on structural and material properties. It analyzes data to estimate how long structures can withstand fire, aiding engineers and architects in designing safer buildings.
+            </p>
+            <a href="https://building-fire-resistance.onrender.com/" target="_blank" class="button" rel="noopener">View Project</a>
+          </div>
+        </div>
+        <hr class="project-divider">
+        <div class="card" role="button" tabindex="0" aria-expanded="false">
+          <h3 onclick="toggleDescription('telegram')" onkeypress="toggleDescription('telegram')">Telegram Channel</h3>
+          <div id="telegram" class="project-description">
+            <h4>Telegram Channel</h4>
+            <p>
+              The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins. As a bet analyst with a track record of 125M winner.
+            </p>
+            <img src="images/telegram.png" alt="Telegram Channel Logo" class="project-image" onclick="showTelegramModal()" role="button" aria-label="View Telegram image">
+            <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button" rel="noopener">Join Telegram</a>
+          </div>
         </div>
       </div>
-      <hr class="project-divider">
-      <div class="card">
-        <h3 onclick="toggleDescription('telegram')">Telegram Channel</h3>
-        <div id="telegram" class="project-description">
-          <h4>Telegram Channel</h4>
-          <p>
-            The home to the <b>best predictions ever</b>, sharing football games with 2+ odds and consistent daily wins.
-          </p>
-          <img src="images/telegram.png" alt="Telegram Channel" class="project-image" onclick="showTelegramModal()">
-          <a href="https://t.me/+qB9x_srqjgc5NzU0" target="_blank" class="button">Join Telegram</a>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <h2>Contact Me 👇</h2>
+        <form class="contact-form" action="https://formspree.io/f/your-email" method="POST"> <!-- Replace with actual Formspree endpoint -->
+          <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+          <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+          <textarea name="message" placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div class="socials">
+          <a href="mailto:muthuricollins43@gmail.com" title="Email" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/254706415082" target="_blank" title="WhatsApp" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+254706415082" title="Phone" aria-label="Call"><i class="fas fa-phone"></i></a>
+          <a href="https://x.com/futbol_afc" target="_blank" title="X (Twitter)" class="x-icon" rel="noopener">X</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section id="contact">
-    <div class="contact-box">
-      <h2>Contact Me 👇</h2>
-      <div class="socials">
-        <a href="mailto:muthuricollins43@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://wa.me/254706415082" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="tel:+254706415082" title="Phone"><i class="fas fa-phone"></i></a>
-        <a href="https://x.com/futbol_afc" target="_blank" title="X" class="x-icon">X</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="quote">
+  <div class="quote" role="quote">
     “Hard work is the only way” – <b>Colloh</b>
   </div>
 
-  <footer>
-    <p>&copy; 2025 COLLINS MUTHURI | A Civil Engineer and Trainer</p>
+  <footer role="contentinfo">
+    <p>&copy; <script>document.write(new Date().getFullYear());</script> COLLINS MUTHURI | A Civil Engineer, AI Engineer and Trainer</p>
   </footer>
 
   <script>
-    // Dropdown toggle
+    // Dropdown toggle with accessibility
     const dropdown = document.querySelector('.dropdown');
     const dropdownContent = document.querySelector('.dropdown ul');
     const dropdownHeader = document.querySelector('.dropdown h3');
 
-    dropdownHeader.addEventListener('click', () => {
+    function toggleDropdown() {
+      const isActive = dropdown.classList.contains('active');
       dropdown.classList.toggle('active');
+      dropdownHeader.setAttribute('aria-expanded', !isActive);
+    }
+
+    dropdownHeader.addEventListener('click', toggleDropdown);
+    dropdownHeader.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleDropdown();
+      }
     });
 
     document.addEventListener('click', (e) => {
       if (!dropdown.contains(e.target)) {
         dropdown.classList.remove('active');
+        dropdownHeader.setAttribute('aria-expanded', 'false');
       }
     });
 
     // Profile modal
     function showModal() {
       document.getElementById('profileModal').style.display = 'flex';
+      document.getElementById('profileModal').focus();
     }
     function hideModal() {
       document.getElementById('profileModal').style.display = 'none';
     }
     document.getElementById('profileModal').addEventListener('click', (e) => {
       if (e.target.classList.contains('modal')) {
+        hideModal();
+      }
+    });
+    document.getElementById('profileModal').addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
         hideModal();
       }
     });
@@ -511,6 +652,11 @@
         hideTelegramModal();
       }
     });
+    document.getElementById('telegramModal').addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideTelegramModal();
+      }
+    });
 
     // Document viewer with password protection
     function viewDocument(url) {
@@ -522,6 +668,7 @@
         downloadButton.href = url;
         downloadButton.setAttribute('download', '');
         document.getElementById('documentModal').style.display = 'flex';
+        document.getElementById('documentModal').focus();
       } else {
         alert('Incorrect password. Please try again or contact the site administrator.');
       }
@@ -535,26 +682,15 @@
         hideDocumentModal();
       }
     });
-
-    // File existence check
-    document.querySelectorAll('.dropdown ul li a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const url = link.getAttribute('onclick').match(/'([^']+)'/)[1];
-        fetch(url, { method: 'HEAD' })
-          .then(response => {
-            if (!response.ok) {
-              e.preventDefault();
-              alert('Error: File not found or inaccessible. Please contact the site administrator.');
-            }
-          })
-          .catch(() => {
-            e.preventDefault();
-            alert('Error: Could not access the file. Please check your connection or contact the site administrator.');
-          });
-      });
+    document.getElementById('documentModal').addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideDocumentModal();
+      }
     });
 
-    // Project description toggle
+    // Removed file existence check as it may not work for local files; assume files are present
+
+    // Project description toggle with accessibility
     function toggleDescription(id) {
       const description = document.getElementById(id);
       if (!description) {
@@ -562,18 +698,38 @@
         return;
       }
       const isActive = description.classList.contains('active');
+      const card = description.parentElement;
       document.querySelectorAll('.project-description').forEach(desc => {
-        desc.classList.remove('active');
-        desc.style.maxHeight = '0';
-        desc.style.opacity = '0';
+        if (desc !== description) {
+          desc.classList.remove('active');
+          desc.style.maxHeight = '0';
+          desc.style.opacity = '0';
+          desc.parentElement.setAttribute('aria-expanded', 'false');
+        }
       });
       if (!isActive) {
         description.classList.add('active');
         description.style.maxHeight = description.scrollHeight + 'px';
         description.style.opacity = '1';
-        console.log(`Toggled description for id: ${id}`);
+        card.setAttribute('aria-expanded', 'true');
+      } else {
+        description.classList.remove('active');
+        description.style.maxHeight = '0';
+        description.style.opacity = '0';
+        card.setAttribute('aria-expanded', 'false');
       }
     }
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
   </script>
 </body>
-  </html>
+</html>
